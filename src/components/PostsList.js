@@ -1,0 +1,57 @@
+import React from 'react'
+import { Button, Container, Divider, Icon, Rating, Label, List, Dropdown, Grid  } from 'semantic-ui-react'
+import { Link } from 'react-router-dom';
+
+const somfin = 'somfin'
+
+const PostsList = () => (
+  <Container>
+
+    <Grid>
+      <Grid.Row>
+        <Grid.Column width={8}>
+          <Container textAlign='left'>
+            <Link to='/new'>
+            <Button className='ui primary button'><Icon name='plus' />New Post</Button>
+          </Link>
+        </Container>
+      </Grid.Column>
+      <Grid.Column width={8}>
+        <Container textAlign='right'>
+          <Dropdown simple text={`Sort by ${somfin}`}>
+            <Dropdown.Menu>
+              <Dropdown.Item text='Newest' />
+              <Dropdown.Item text='Oldest' />
+              <Dropdown.Item text='Highest rating' />
+              <Dropdown.Item text='Lowest rating' />
+            </Dropdown.Menu>
+          </Dropdown>
+        </Container>
+      </Grid.Column>
+    </Grid.Row>
+  </Grid>
+
+  <Divider></Divider>
+
+  <List relaxed verticalAlign='middle'>
+    <List.Item>
+      <List.Content floated='right'>
+        <Rating icon='star' defaultRating={3} maxRating={5} />
+      </List.Content>
+      <List.Content floated='right'>
+        <Label as='a' color='green'>
+          Redux
+        </Label>
+      </List.Content>
+      <List.Icon name='sticky note' size='large' />
+      <List.Content>
+        <List.Header as='a'>Semantic UI React Fixed Template</List.Header>
+        <List.Description>By Daniel Louise on 12/8/2016.</List.Description>
+      </List.Content>
+    </List.Item>
+  </List>
+
+</Container>
+)
+
+export default PostsList
