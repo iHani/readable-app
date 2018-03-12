@@ -1,5 +1,5 @@
-import React from 'react'
-import { Container, List, Segment } from 'semantic-ui-react'
+import React from 'react';
+import { Container, List, Segment } from 'semantic-ui-react';
 
 const Footer = () => (
   <Segment
@@ -17,4 +17,4 @@ const Footer = () => (
   </Segment>
 )
 
-export default Footer
+export default Footer;
