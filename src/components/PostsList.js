@@ -19,10 +19,12 @@ class PostsList extends Component {
   }
 
   componentDidMount () {
+    BlogAPI.getAllPosts().then(posts => console.log(posts));
     BlogAPI.getAllPosts().then(posts => this.setState({ posts }));
   }
 
   render () {
+    // console.log(this.props);
     return (
       <Container>
 
@@ -52,10 +54,12 @@ class PostsList extends Component {
 
         <List relaxed verticalAlign='middle'>
           {this.state.posts && this.state.posts.map(post => {
-            return (<PostRow
-              key={post.id}
-              post={post}
-            />)
+            return (
+              <PostRow
+                key={post.id}
+                post={post}
+              />
+            )
           })}
         </List>
 
@@ -64,4 +68,6 @@ class PostsList extends Component {
   }
 }
 
-export default PostsList;
+export default PostsList
+
+// export default PostsList;

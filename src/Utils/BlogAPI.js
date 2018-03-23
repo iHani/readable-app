@@ -9,7 +9,8 @@ token = localStorage.token = Math.random().toString(36).substr(-8)
 
 const headers = {
   'Accept': 'application/json',
-  'Authorization': token
+  'Authorization': token,
+  'Content-Type': 'application/json'
 }
 
 // export const get = (bookId) =>
@@ -17,13 +18,31 @@ const headers = {
 // .then(res => res.json())
 // .then(data => data.book)
 
+export const getAllCategories = () =>
+fetch(`${api}/categories`, { headers })
+.then(res => res.json())
+
 export const getAllPosts = () =>
 fetch(`${api}/posts`, { headers })
 .then(res => res.json())
 
-export const getAllCategories = () =>
-fetch(`${api}/categories`, { headers })
+export const getPost = (id) =>
+fetch(`${api}/posts/${id}`, { headers })
 .then(res => res.json())
+
+export const getComments = (id) =>
+fetch(`${api}/posts/${id}/comments`, { headers })
+.then(res => res.json())
+
+
+export const vote = (id, option) =>
+fetch(`${api}/posts/${id}/${option}`, {
+  method: 'POST',
+  ...headers
+})
+.then(res => res.json())
+
+
 
 
 

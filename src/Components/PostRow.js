@@ -1,14 +1,23 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Label, List } from 'semantic-ui-react';
+import { Container, Label, List } from 'semantic-ui-react';
+import { Voter } from './index'
 
 class PostRow extends Component {
 
+
+  actionme (e, b, x) {
+    console.log(e, b, x);
+  }
   render () {
     const { id, voteScore, commentCount, category, title, author } = this.props.post
 
     return (
       <List.Item>
+
+        <List.Content floated='left'>
+          <Voter id={id} voteScore={voteScore} />
+        </List.Content>
 
         <List.Content floated='right'>
           <Label as='a' color='green'>
@@ -17,26 +26,20 @@ class PostRow extends Component {
           <Label>
             <List.Icon name='comments' /> {commentCount}
           </Label>
-          <Link to='/'><List.Icon name='pencil' style={{color: 'grey'}}/></Link>
-          <Link to='/'><List.Icon name='trash' style={{color: 'red'}}/></Link>
-        </List.Content>
-
-        <List.Content floated='left'>
-          <Link to={`/posts/${id}/upVote`}><List.Icon name='caret up' /></Link>
-          {voteScore}
-          <Link to={`/posts/${id}/downVote`}><List.Icon name='caret down' /></Link>
+          <Link to='/'><List.Icon name='pencil' style={{color: 'grey'}} /></Link>
+          <Link to='/'><List.Icon name='trash' style={{color: 'red'}} /></Link>
         </List.Content>
 
         <List.Content floated='left'>
           <Link to={`/posts/${id}`}>
-            <List.Header>{title}</List.Header>
-          </Link>
-          <List.Description>By {author}</List.Description>
-        </List.Content>
+          <List.Header>{title}</List.Header>
+        </Link>
+        <List.Description>By {author}</List.Description>
+      </List.Content>
 
-      </List.Item>
-    )
-  }
+    </List.Item>
+  )
+}
 }
 
 export default PostRow;

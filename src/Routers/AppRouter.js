@@ -10,7 +10,6 @@ class AppRouter extends Component {
       <BrowserRouter>
         <div>
           <Header />
-
           <Container text style={{ marginTop: '7em' }}>
             <Switch>
               <Route
@@ -29,7 +28,6 @@ class AppRouter extends Component {
               />
             </Switch>
           </Container>
-
           <Footer />
         </div>
       </BrowserRouter>

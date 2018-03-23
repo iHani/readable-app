@@ -11,7 +11,7 @@ const Footer = () => (
         <List.Item as='a' href='#'>Site Map</List.Item>
         <List.Item as='a' href='#'>Contact Us</List.Item>
         <List.Item as='a' href='#'>Terms and Conditions</List.Item>
-        <List.Item as='a' href='#'>Prsivacy Policy</List.Item>
+        <List.Item as='a' href='#'>Privacy Policy</List.Item>
       </List>
     </Container>
   </Segment>

@@ -5,6 +5,9 @@ import PostRow from './PostRow';
 import PostForm from './PostForm';
 import SinglePost from './SinglePost';
 import CategoryPage from './CategoryPage';
+import CommentsList from './CommentsList';
+import AddComment from './AddComment';
+import Voter from './Voter';
 
 export {
   Header,
@@ -13,5 +16,8 @@ export {
   PostRow,
   PostForm,
   SinglePost,
-  CategoryPage
+  CommentsList,
+  AddComment,
+  CategoryPage,
+  Voter
 }

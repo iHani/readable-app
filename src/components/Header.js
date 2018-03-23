@@ -6,7 +6,8 @@ import * as BlogAPI from '../Utils/BlogAPI';
 class Header extends Component {
 
   state = {
-    categories: []
+    categories: [],
+    posts: []
   }
 
   serializeCategories (categories) {
@@ -24,27 +25,30 @@ class Header extends Component {
   }
 
   render () {
+    const { categories } = this.state
     return (
       <Menu fixed='top' inverted style={{background: '#0a5094'}}>
         <Container>
+          <Link to='/'>
           <Menu.Item as='h2' header>Readable</Menu.Item>
-          <Menu.Item>
-            <Link to='/'>Home
-          </Link>
+        </Link>
+
+        <Menu.Item>
+          <Link to='/'>Home</Link>
         </Menu.Item>
 
         <Dropdown
           item
           simple
           text='Categories'
-          options={this.state.categories}
+          options={categories}
           >
           </Dropdown>
+
         </Container>
       </Menu>
     )
   }
 }
-
 
 export default Header;
