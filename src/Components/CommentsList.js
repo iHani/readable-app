@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Container, Divider, Dropdown, List, Menu } from 'semantic-ui-react';
-import * as BlogAPI from '../Utils/BlogAPI';
+import { List } from 'semantic-ui-react';
 import { Voter } from './index'
 
 class CommentsList extends Component {
@@ -11,12 +10,16 @@ class CommentsList extends Component {
       <List divided relaxed>
 
         {this.props.comments.map(comment => {
-          const { id, voteScore, category,  } = comment
+          const { id, voteScore  } = comment
           return (
             <List.Item key={id}>
 
               <List.Content floated='left'>
-                <Voter id={id} voteScore={voteScore} />
+                <Voter
+                  type='comment'
+                  id={id}
+                  voteScore={voteScore}
+                />
               </List.Content>
 
               <List.Content floated='right'>
@@ -32,8 +35,6 @@ class CommentsList extends Component {
             </List.Item>
           )
         })}
-
-        <Divider horizontal>Add new comment</Divider>
       </List>
     )
   }

@@ -6,7 +6,7 @@ const api = "http://localhost:3001"
 let token = localStorage.token
 if (!token)
 token = localStorage.token = Math.random().toString(36).substr(-8)
-
+console.log(token);
 const headers = {
   'Accept': 'application/json',
   'Authorization': token,
@@ -35,16 +35,49 @@ fetch(`${api}/posts/${id}/comments`, { headers })
 .then(res => res.json())
 
 
-export const vote = (id, option) =>
-fetch(`${api}/posts/${id}/${option}`, {
-  method: 'POST',
-  ...headers
-})
-.then(res => res.json())
+export const postPost = (post) => (
+  fetch(`${api}/posts`, {
+    method: 'POST',
+    headers: {
+      ...headers
+    },
+    body: JSON.stringify({ ...post }),
+  })
+  .then(res => res.json())
+)
 
+export const postComment = (comment) => (
+  fetch(`${api}/comments`, {
+    method: 'POST',
+    headers: {
+      ...headers
+    },
+    body: JSON.stringify({ ...comment }),
+  })
+  .then(res => res.json())
+)
 
+export const votePost = (id, option) => (
+  fetch(`${api}/posts/${id}`, {
+    method: 'POST',
+    headers: {
+      ...headers
+    },
+    body: JSON.stringify({ option }),
+  })
+  .then(res => res.json())
+)
 
-
+export const voteComment = (id, option) => (
+  fetch(`${api}/comments/${id}`, {
+    method: 'POST',
+    headers: {
+      ...headers
+    },
+    body: JSON.stringify({ option }),
+  })
+  .then(res => res.json())
+)
 
 //
 // export const update = (book, shelf) =>

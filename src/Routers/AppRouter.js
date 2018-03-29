@@ -8,7 +8,7 @@ class AppRouter extends Component {
   render () {
     return (
       <BrowserRouter>
-        <div>
+        <div className="flex-container">
           <Header />
           <Container text style={{ marginTop: '7em' }}>
             <Switch>
@@ -26,6 +26,11 @@ class AppRouter extends Component {
                 path='/posts/:id'
                 component={SinglePost}
               />
+              {/* <Route
+                path='/:category/posts'
+                component={CategoryPage}
+              /> */}
+
             </Switch>
           </Container>
           <Footer />

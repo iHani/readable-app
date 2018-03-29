@@ -1,14 +1,30 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import serializeForm from 'form-serialize';
+import uuid from 'uuid';
+import * as BlogAPI from '../Utils/BlogAPI';
 import { Container, Form } from 'semantic-ui-react';
 
 class AddComment extends Component {
 
+  submitNewComment (e) {
+    const parentId = e.target.getAttribute('parentid')
+    const { id, body, author } = serializeForm(e.target, { hash: true })
+    const comment = {
+      parentId,
+      id: uuid(),
+      timestamp: Date.now(),
+      body,
+      author,
+    }
+    // console.log('..', comment);
+    BlogAPI.postComment(comment).then(res => console.log('>>>', res))
+  }
+
   render () {
     return (
-      <Form>
-        <Form.TextArea label='Comment' placeholder='Your comment...' />
-        <Form.Input fluid label='Name' placeholder='Your name' />
+      <Form parentid={this.props.parentId} onSubmit={this.submitNewComment}>
+        <Form.TextArea name='body' label='Comment' placeholder='Your comment...' />
+        <Form.Input name='author' fluid label='Name' placeholder='Your name' />
         <Form.Field>
           <Container textAlign='center'>
             <Form.Button content='Submit' />

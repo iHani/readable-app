@@ -8,6 +8,7 @@ import CategoryPage from './CategoryPage';
 import CommentsList from './CommentsList';
 import AddComment from './AddComment';
 import Voter from './Voter';
+import Sorter from './Sorter';
 
 export {
   Header,
@@ -19,5 +20,6 @@ export {
   CommentsList,
   AddComment,
   CategoryPage,
-  Voter
+  Voter,
+  Sorter
 }

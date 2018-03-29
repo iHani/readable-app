@@ -1,22 +1,22 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Container, Label, List } from 'semantic-ui-react';
+import { Label, List } from 'semantic-ui-react';
 import { Voter } from './index'
 
 class PostRow extends Component {
 
-
-  actionme (e, b, x) {
-    console.log(e, b, x);
-  }
   render () {
-    const { id, voteScore, commentCount, category, title, author } = this.props.post
+    const { id, voteScore, commentCount, category, title, body, author } = this.props.post
 
     return (
       <List.Item>
 
         <List.Content floated='left'>
-          <Voter id={id} voteScore={voteScore} />
+          <Voter
+            type='post'
+            id={id}
+            voteScore={voteScore}
+          />
         </List.Content>
 
         <List.Content floated='right'>
@@ -31,7 +31,7 @@ class PostRow extends Component {
         </List.Content>
 
         <List.Content floated='left'>
-          <Link to={`/posts/${id}`}>
+          <Link to={`/posts/${id}`} body={body}>
           <List.Header>{title}</List.Header>
         </Link>
         <List.Description>By {author}</List.Description>
