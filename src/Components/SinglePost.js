@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import moment from 'moment';
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom';
 import { Container, Divider, Grid, Header, Label, List } from 'semantic-ui-react';
 import * as BlogAPI from '../Utils/BlogAPI';
 import { AddComment, CommentsList, Voter } from './index';
+import { getAllPosts, addPost, editPost, deletePost } from '../actions'
 
 class SinglePost extends Component {
 
@@ -18,6 +20,19 @@ class SinglePost extends Component {
     BlogAPI.getPost(id).then(post => self.setState({ post }))
     BlogAPI.getComments(id).then(comments => self.setState({ comments }))
   }
+
+  HandleDeletePost = (id) => {
+    BlogAPI.deletePost(id).then(res => console.log(`post ${res.id} deleted`))
+    // console.log('deleted?', id);
+  }
+
+  HandleEditPost = (id) => {
+    // BlogAPI.editPost(id).then(res => console.log('res', res))
+    // console.log('deleted?', id);
+  }
+
+
+
 
   render() {
     const { id, voteScore } = this.state.post
@@ -45,8 +60,8 @@ class SinglePost extends Component {
               </p>
             </Container>
             <Container floated='right'>
-              <Link to='/'><List.Icon name='pencil' style={{color: 'grey'}} /></Link>
-              <Link to='/'><List.Icon name='trash' style={{color: 'red'}} /></Link>
+              <Link to={`/posts/${id}/edit`}><List.Icon name='pencil' style={{color: 'grey'}} onClick={() => this.HandleEditPost(id)}/></Link>
+              <Link to='/'><List.Icon name='trash' style={{color: 'red'}}/></Link>
             </Container>
 
             {this.state.post.commentCount > 0 &&
@@ -61,9 +76,28 @@ class SinglePost extends Component {
           </Container>
         </Grid.Column>
       </Grid>
-
     )
   }
 }
 
-export default SinglePost;
+function mapStateToProps ({ posts, categories }) {
+  const dayOrder = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
+
+  return {
+    posts: [],
+    calendar: ''
+  }
+}
+
+function mapDispatchToProps (dispatch) {
+  return {
+    newPost: post => dispatch(addPost(post)),
+    editPost: (id, post) => dispatch(editPost(id, post)),
+    deletePost: id => dispatch(deletePost(id))
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SinglePost)

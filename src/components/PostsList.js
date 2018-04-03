@@ -1,23 +1,19 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom';
-import { Button, Container, Divider, Icon, List, Grid  } from 'semantic-ui-react';
+import { Button, Container, Divider, Icon, List, Grid } from 'semantic-ui-react';
 import * as BlogAPI from '../Utils/BlogAPI';
 import { PostRow, Sorter } from './index';
-
+import { fetchPosts } from '../actions';
 
 class PostsList extends Component {
 
-  state = {
-    posts: [],
-  }
-
   componentDidMount () {
-    // BlogAPI.getAllPosts().then(posts => console.log(posts));
-    BlogAPI.getAllPosts().then(posts => this.setState({ posts }));
+    this.props.fetchPosts()
   }
 
   render () {
-console.log(this.state);
+
     return (
       <Container className='flex-main'>
 
@@ -33,29 +29,40 @@ console.log(this.state);
           <Grid.Column width={8}>
             <Container textAlign='right'>
               <Sorter />
-              </Container>
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
+            </Container>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
 
-        <Divider></Divider>
+      <Divider></Divider>
 
-        <List relaxed verticalAlign='middle'>
-          {this.state.posts && this.state.posts.map(post => {
-            return (
-              <PostRow
-                key={post.id}
-                post={post}
-              />
-            )
-          })}
-        </List>
+      <List relaxed verticalAlign='middle'>
+        {this.props.posts && this.props.posts.map(post => {
+          return (
+            <PostRow
+              key={post.id}
+              post={post}
+            />
+          )
+        })}
+      </List>
 
-      </Container>
-    )
-  }
+    </Container>
+  )
+}
 }
 
-export default PostsList
 
-// export default PostsList;
+
+const mapStateToProps = state => {
+  console.log(state);
+  return {
+    posts: state.postsReducer.posts
+  }
+};
+
+const mapDispatchToProps = dispatch => ({
+  fetchPosts: () => dispatch(fetchPosts())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostsList);

@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { List } from 'semantic-ui-react';
-import { Voter } from './index'
+import { Voter } from './index';
+import * as BlogAPI from '../Utils/BlogAPI';
+
 
 class CommentsList extends Component {
+
+  HandleDeleteComment = (id) => {
+    BlogAPI.deleteComment(id).then(res => console.log(`post ${res.id} deleted`))
+    // console.log('deleted?', id);
+  }
 
   render () {
     return (
@@ -24,7 +31,7 @@ class CommentsList extends Component {
 
               <List.Content floated='right'>
                 <Link to='/'><List.Icon name='pencil' style={{color: 'grey'}} /></Link>
-                <Link to='/'><List.Icon name='trash' style={{color: 'red'}} /></Link>
+                <Link to='/'><List.Icon name='trash' style={{color: 'red'}} onClick={() => this.HandleDeleteComment(id)}/></Link>
               </List.Content>
 
               <List.Content floated='left'>

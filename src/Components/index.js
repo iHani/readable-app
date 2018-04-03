@@ -21,5 +21,5 @@ export {
   AddComment,
   CategoryPage,
   Voter,
-  Sorter
+  Sorter,
 }

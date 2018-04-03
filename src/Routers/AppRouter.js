@@ -20,11 +20,17 @@ class AppRouter extends Component {
               <Route
                 exact
                 path='/posts'
-                render={() => <PostForm />}
+                component={PostForm}
               />
               <Route
+                exact
                 path='/posts/:id'
                 component={SinglePost}
+              />
+              <Route
+                exact
+                path='/posts/:id/edit'
+                component={PostForm}
               />
               {/* <Route
                 path='/:category/posts'

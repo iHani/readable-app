@@ -7,17 +7,16 @@ import { Container, Form } from 'semantic-ui-react';
 class AddComment extends Component {
 
   submitNewComment (e) {
-    const parentId = e.target.getAttribute('parentid')
-    const { id, body, author } = serializeForm(e.target, { hash: true })
+    const parentId = e.target.getAttribute('parentid');
+    const { body, author } = serializeForm(e.target, { hash: true });
     const comment = {
-      parentId,
       id: uuid(),
-      timestamp: Date.now(),
+      parentId,
       body,
       author,
+      timestamp: Date.now(),
     }
-    // console.log('..', comment);
-    BlogAPI.postComment(comment).then(res => console.log('>>>', res))
+    BlogAPI.postComment(comment);
   }
 
   render () {

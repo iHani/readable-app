@@ -6,7 +6,6 @@ const api = "http://localhost:3001"
 let token = localStorage.token
 if (!token)
 token = localStorage.token = Math.random().toString(36).substr(-8)
-console.log(token);
 const headers = {
   'Accept': 'application/json',
   'Authorization': token,
@@ -42,6 +41,31 @@ export const postPost = (post) => (
       ...headers
     },
     body: JSON.stringify({ ...post }),
+  })
+  .then(res => res.json())
+)
+
+export const deletePost = (id) => (
+  fetch(`${api}/posts/${id}`, {
+    method: 'DELETE',
+    headers: { ...headers }
+  })
+  .then(res => res.json())
+)
+
+export const editPost = (id, post) => (
+  fetch(`${api}/posts/${id}`, {
+    method: 'PUT',
+    headers: { ...headers },
+    body: JSON.stringify({ ...post }),
+  })
+  .then(res => res.json())
+)
+
+export const deleteComment = (id) => (
+  fetch(`${api}/comments/${id}`, {
+    method: 'DELETE',
+    headers: { ...headers }
   })
   .then(res => res.json())
 )

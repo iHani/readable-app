@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Label, List } from 'semantic-ui-react';
-import { Voter } from './index'
+import * as BlogAPI from '../Utils/BlogAPI';
+import { Icon, Label, List } from 'semantic-ui-react';
+import { Voter } from './index';
 
 class PostRow extends Component {
 
+  HandleDeletePost = (id) => {
+    BlogAPI.deletePost(id).then(res => console.log(`post ${res.id} deleted`))
+    // console.log('deleted?', id);
+  }
   render () {
-    const { id, voteScore, commentCount, category, title, body, author } = this.props.post
+    const { id, voteScore, commentCount, category, title, author } = this.props.post
 
     return (
       <List.Item>
@@ -26,12 +31,12 @@ class PostRow extends Component {
           <Label>
             <List.Icon name='comments' /> {commentCount}
           </Label>
-          <Link to='/'><List.Icon name='pencil' style={{color: 'grey'}} /></Link>
-          <Link to='/'><List.Icon name='trash' style={{color: 'red'}} /></Link>
+          <Link to='/'><Icon name='pencil' style={{color: 'grey'}} /></Link>
+          <Link to='/'><Icon name='trash' style={{color: 'red'}} onClick={() => this.HandleDeletePost(id)}/></Link>
         </List.Content>
 
         <List.Content floated='left'>
-          <Link to={`/posts/${id}`} body={body}>
+          <Link to={`/posts/${id}`}>
           <List.Header>{title}</List.Header>
         </Link>
         <List.Description>By {author}</List.Description>
