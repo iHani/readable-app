@@ -5,7 +5,6 @@ const somfin = 'somfin';
 
 class Sorter extends Component {
 
-
   sortOptions = [
     { value: 'Newest', text: 'Newest' },
     { value: 'Oldest', text: 'Oldest' },

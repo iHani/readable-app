@@ -8,7 +8,6 @@ class PostRow extends Component {
 
   HandleDeletePost = (id) => {
     BlogAPI.deletePost(id).then(res => console.log(`post ${res.id} deleted`))
-    // console.log('deleted?', id);
   }
   render () {
     const { id, voteScore, commentCount, category, title, author } = this.props.post
@@ -25,9 +24,7 @@ class PostRow extends Component {
         </List.Content>
 
         <List.Content floated='right'>
-          <Label as='a' color='green'>
-            {category}
-          </Label>
+          <Label as='a' color='green'>{category}</Label>
           <Label>
             <List.Icon name='comments' /> {commentCount}
           </Label>
@@ -36,15 +33,13 @@ class PostRow extends Component {
         </List.Content>
 
         <List.Content floated='left'>
-          <Link to={`/posts/${id}`}>
-          <List.Header>{title}</List.Header>
-        </Link>
-        <List.Description>By {author}</List.Description>
-      </List.Content>
+          <Link to={`/posts/${id}`}><h3>{title}</h3></Link>
+          <List.Description>By {author}</List.Description>
+        </List.Content>
 
-    </List.Item>
-  )
-}
+      </List.Item>
+    )
+  }
 }
 
 export default PostRow;

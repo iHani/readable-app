@@ -3,27 +3,13 @@ import moment from 'moment';
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom';
 import { Container, Divider, Grid, Header, Label, List } from 'semantic-ui-react';
-import * as BlogAPI from '../Utils/BlogAPI';
 import { AddComment, CommentsList, Voter } from './index';
-import { getAllPosts, addPost, editPost, deletePost } from '../actions'
+import { fetchPost } from '../actions/posts';
 
 class SinglePost extends Component {
 
-  state = {
-    post: {},
-    comments: []
-  }
-
-  componentDidMount () {
-    const self = this
-    const id = self.props.match.params.id
-    BlogAPI.getPost(id).then(post => self.setState({ post }))
-    BlogAPI.getComments(id).then(comments => self.setState({ comments }))
-  }
-
   HandleDeletePost = (id) => {
-    BlogAPI.deletePost(id).then(res => console.log(`post ${res.id} deleted`))
-    // console.log('deleted?', id);
+    // BlogAPI.deletePost(id).then(res => console.log(`post ${res.id} deleted`))
   }
 
   HandleEditPost = (id) => {
@@ -31,11 +17,8 @@ class SinglePost extends Component {
     // console.log('deleted?', id);
   }
 
-
-
-
   render() {
-    const { id, voteScore } = this.state.post
+    const { id, voteScore, title, category, author, body, timestamp, commentCount } = this.props.post;
     return (
       <Grid columns='equal'>
         <Grid.Column width={1}>
@@ -47,16 +30,16 @@ class SinglePost extends Component {
         </Grid.Column>
         <Grid.Column width={14}>
           <Container>
-            <Header size='large'>{this.state.post.title}
-              <Label color='green'>{this.state.post.category}</Label>
+            <Header size='large'>{title}
+              <Label color='green'>{category}</Label>
               <Header.Subheader>
-                By <strong>{this.state.post.author}</strong> on {moment(this.state.post.timestamp).calendar()}
+                By <strong>{author}</strong> on {moment(timestamp).calendar()}
               </Header.Subheader>
             </Header>
 
             <Container text className='pt-1 pb-2'>
               <p>
-                {this.state.post.body}
+                {body}
               </p>
             </Container>
             <Container floated='right'>
@@ -64,15 +47,15 @@ class SinglePost extends Component {
               <Link to='/'><List.Icon name='trash' style={{color: 'red'}}/></Link>
             </Container>
 
-            {this.state.post.commentCount > 0 &&
+            {commentCount > 0 &&
               <Container>
-                <Divider horizontal>Comments ({this.state.post.commentCount}) </Divider>
-                <CommentsList comments={this.state.comments} />
+                <Divider horizontal>Comments ({commentCount}) </Divider>
+                <CommentsList parentId={id} />
               </Container>
             }
 
             <Divider horizontal>Add new comment</Divider>
-            <AddComment parentId={this.props.match.params.id} />
+            <AddComment parentId={id} />
           </Container>
         </Grid.Column>
       </Grid>
@@ -80,24 +63,23 @@ class SinglePost extends Component {
   }
 }
 
-function mapStateToProps ({ posts, categories }) {
-  const dayOrder = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
+// const initPost = { id: "statuicddididii", timestamp: 1467166872634, title: "STATIC POST", body: "Everyone says so after all.", voteScore: 850, commentCount: 7, author: 'thing three', category: 'REDUX', comments: [] }
 
-  return {
-    posts: [],
-    calendar: ''
+const mapStateToProps = (state, ownProps) => {
+  if (state.posts.isPostsFetched) {
+    return {
+      post: state.posts.posts.find(post => post.id === ownProps.match.params.id),
+    }
+  } else {
+    return {
+      post: {}
+    }
   }
 }
 
-function mapDispatchToProps (dispatch) {
-  return {
-    newPost: post => dispatch(addPost(post)),
-    editPost: (id, post) => dispatch(editPost(id, post)),
-    deletePost: id => dispatch(deletePost(id))
-  }
-}
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SinglePost)
+const mapDispatchToProps = dispatch => ({
+  fetchPost: (id) => dispatch(fetchPost(id))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SinglePost);

@@ -1,19 +1,12 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Button, Container, Divider, Icon, List, Grid } from 'semantic-ui-react';
-import * as BlogAPI from '../Utils/BlogAPI';
 import { PostRow, Sorter } from './index';
-import { fetchPosts } from '../actions';
 
 class PostsList extends Component {
 
-  componentDidMount () {
-    this.props.fetchPosts()
-  }
-
   render () {
-
     return (
       <Container className='flex-main'>
 
@@ -21,48 +14,38 @@ class PostsList extends Component {
           <Grid.Row>
             <Grid.Column width={8}>
               <Container textAlign='left'>
-                <Link to='/posts'>
-                <Button className='ui primary button'><Icon name='plus' />New Post</Button>
-              </Link>
-            </Container>
-          </Grid.Column>
-          <Grid.Column width={8}>
-            <Container textAlign='right'>
-              <Sorter />
-            </Container>
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
+                <Sorter />
+              </Container>
+            </Grid.Column>
+            <Grid.Column width={8}>
+              <Container textAlign='right'>
+                <Link to='/posts'><Button className='ui primary button'><Icon name='plus' />New Post</Button></Link>
+              </Container>
+            </Grid.Column>
 
-      <Divider></Divider>
+          </Grid.Row>
+        </Grid>
 
-      <List relaxed verticalAlign='middle'>
-        {this.props.posts && this.props.posts.map(post => {
-          return (
-            <PostRow
-              key={post.id}
-              post={post}
-            />
-          )
-        })}
-      </List>
+        <Divider></Divider>
 
-    </Container>
-  )
-}
-}
+        <List relaxed verticalAlign='middle'>
+          {this.props.posts && this.props.posts.map(post => {
+            return (
+              <PostRow
+                key={post.id}
+                post={post}
+              />
+            )
+          })}
+        </List>
 
-
-
-const mapStateToProps = state => {
-  console.log(state);
-  return {
-    posts: state.postsReducer.posts
+      </Container>
+    )
   }
-};
+}
 
-const mapDispatchToProps = dispatch => ({
-  fetchPosts: () => dispatch(fetchPosts())
+const mapStateToProps = (state) => ({
+  posts: state.posts.posts
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostsList);
+export default connect(mapStateToProps)(PostsList);
