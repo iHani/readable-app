@@ -9,7 +9,6 @@ class PostsList extends Component {
   render () {
     return (
       <Container className='flex-main'>
-
         <Grid>
           <Grid.Row>
             <Grid.Column width={8}>
@@ -22,7 +21,6 @@ class PostsList extends Component {
                 <Link to='/posts'><Button className='ui primary button'><Icon name='plus' />New Post</Button></Link>
               </Container>
             </Grid.Column>
-
           </Grid.Row>
         </Grid>
 

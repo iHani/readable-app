@@ -1,10 +1,12 @@
 import * as BlogAPI from '../Utils/BlogAPI';
 export const RECEIVED_CATEGORIES = 'RECEIVED_CATEGORIES';
 
-export const fetchCategories = (id) => dispatch => (
+export const fetchCategories = () => dispatch => (
   BlogAPI
   .getAllCategories()
-  .then(categories => dispatch(receivedCategories(categories)))
+  .then(res => {
+    dispatch(receivedCategories(res.categories))
+  })
 );
 
 export const receivedCategories = categories => ({

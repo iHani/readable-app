@@ -2,13 +2,17 @@ import {
   RECEIVED_CATEGORIES,
 } from '../actions/categories';
 
-export default (state = {}, action) => {
+const initialCategoryState = {
+  categories: []
+}
 
+export default (state = initialCategoryState, action) => {
+  const { categories } = action
   switch (action.type) {
     case RECEIVED_CATEGORIES :
     return {
       ...state,
-      ...action.categories
+      categories
     }
 
     default :

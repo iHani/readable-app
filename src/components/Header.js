@@ -2,12 +2,15 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Container, Dropdown, Menu } from 'semantic-ui-react';
+import createHistory from 'history/createBrowserHistory';
+
+const history = createHistory({ forceRefresh: true });
 
 class Header extends Component {
 
-  componentWillMount () {
-    // BlogAPI.getAllCategories().then(categories => this.setState({ categories: this.serializeCategories(categories.categories) }));
-  }
+  handleChangeCategory = (e, { value }) => {
+    history.push(`/${value}`);
+  };
 
   render () {
     return (
@@ -20,28 +23,35 @@ class Header extends Component {
         <Menu.Item>
           <Link to='/'>Home</Link>
         </Menu.Item>
-        {/* <select name='category'>
-          <option key={'name'} value={'name'}>{'name'}</option>
-        </select> */}
 
-        <Dropdown
-          item
-          simple
-          text='Categories'
-          // options={() => categories.map(cat => Object.assign(cat, {key: cat.key, text: cat.name}))}
-          >
-        </Dropdown>
+        {this.props.categories &&
+          <Dropdown
+            item
+            simple
+            text='Categories'
+            options={this.props.categories}
+            onChange={this.handleChangeCategory}
+            defaultValue={this.props.selectedCategory}
+            >
+            </Dropdown>
+          }
 
-      </Container>
-    </Menu>
-  )
-}
+        </Container>
+      </Menu>
+    )
+  }
 }
 
 const mapStateToProps = (state, ownProps) => {
-  return {
-    categories: state.categories.categories
-  }
+  const categories = state.categories.categories ?
+  state.categories.categories.map(({ name, path }) => ({
+    path,
+    key: name,
+    text: name,
+    value: name,
+  }))
+  : []
+  return { categories }
 }
 
 export default connect(mapStateToProps)(Header);

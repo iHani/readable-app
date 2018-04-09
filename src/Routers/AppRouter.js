@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Container } from 'semantic-ui-react';
-import { Header, Footer, PostsList, PostForm, SinglePost } from '../Components';
+import { Header, Footer, PostsList, PostForm, SinglePost, CategoryPage } from '../Components';
 import { connect } from 'react-redux';
 import { fetchPosts } from '../actions/posts';
 import { fetchCategories } from '../actions/categories';
@@ -36,7 +36,6 @@ class AppRouter extends Component {
                 exact
                 path='/posts/:id'
                 component={SinglePost}
-                // render={() => <SinglePost xxxxxxxxxxxx={true} />}
 
               />
               <Route
@@ -45,10 +44,11 @@ class AppRouter extends Component {
                 component={PostForm}
                 // render={() => <PostForm editing={true} />}
               />
-              {/* <Route
-                path='/:category/posts'
+              <Route
+                exact
+                path='/:category'
                 component={CategoryPage}
-              /> */}
+              />
 
             </Switch>
           </Container>
@@ -60,6 +60,7 @@ class AppRouter extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
+  // console.log('AppRouter state', state.categories.categories);
   return {
     posts: state.posts.posts
   }

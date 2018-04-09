@@ -1,13 +1,8 @@
 const object1 = {
-  a: 1,
-  b: 2,
-  c: {
-    aa: 11,
-    bb:22
-  }
+  obj1: 'ONE1'
 };
 
 
-const object2 = Object.assign({}, object1);
+const object2 = Object.assign({ text: 'hala'}, object1);
 
 console.log(object2);
