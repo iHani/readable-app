@@ -20,9 +20,9 @@ class Voter extends Component {
   render () {
     return (
       <span className="box">
-        <div className="center-item caret" onClick={() => this.caretClicked('upVote')}><List.Icon name='caret up' /></div>
+        <div className="center-item size-20px" onClick={() => this.caretClicked('upVote')}><List.Icon name='caret up' /></div>
         <div className="center-item">{this.props.voteScore}</div>
-        <div className="center-item caret" onClick={() => this.caretClicked('downVote')}><List.Icon name='caret down' /></div>
+        <div className="center-item size-20px" onClick={() => this.caretClicked('downVote')}><List.Icon name='caret down' /></div>
       </span>
     )
   }

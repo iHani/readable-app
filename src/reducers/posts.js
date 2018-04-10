@@ -1,7 +1,8 @@
 import {
   RECEIVED_POST,
-  POST_FETCHED,
+  POSTS_FETCHED,
   VOTE_POST,
+  POST_DELETED,
 } from '../actions/posts'
 
 const initialPostState = {
@@ -11,7 +12,7 @@ const initialPostState = {
 }
 
 export default (state = initialPostState, action) => {
-  const { posts, isPostsFetched } = action
+  const { id, posts, isPostsFetched } = action
   switch (action.type) {
     case RECEIVED_POST :
     return {
@@ -19,7 +20,7 @@ export default (state = initialPostState, action) => {
       posts
     }
 
-    case POST_FETCHED :
+    case POSTS_FETCHED :
     return {
       ...state,
       isPostsFetched
@@ -34,6 +35,12 @@ export default (state = initialPostState, action) => {
         }
         return post;
       })
+    }
+
+    case POST_DELETED :
+    return {
+      ...state,
+      posts: state.posts.filter(post => post.id !== id)
     }
 
     default :

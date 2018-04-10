@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom';
-import { Container, Divider, Grid, Header, Label, List } from 'semantic-ui-react';
+import { Container, Divider, Grid, Header, Icon, Label } from 'semantic-ui-react';
 import { AddComment, CommentsList, Voter } from './index';
 import { fetchComments } from '../actions/comments';
+import { deletePost } from '../actions/posts';
+import createHistory from 'history/createBrowserHistory';
+
+const history = createHistory({ forceRefresh: true });
 
 class SinglePost extends Component {
 
@@ -12,12 +15,12 @@ class SinglePost extends Component {
     this.props.fetchComments(this.props.match.params.id)
   }
   HandleDeletePost = (id) => {
-    // BlogAPI.deletePost(id).then(res => console.log(`post ${res.id} deleted`))
+    this.props.deletePost(id)
+    history.push(`/`);
   }
 
-  HandleEditPost = (id) => {
-    // BlogAPI.editPost(id).then(res => console.log('res', res))
-    // console.log('deleted?', id);
+  HandleEditePost = (id) => {
+    console.log('HandleEditePost', id);
   }
 
   render() {
@@ -46,23 +49,32 @@ class SinglePost extends Component {
               </p>
             </Container>
             <Container floated='right'>
-              <Link to={`/posts/${id}/edit`}><List.Icon name='pencil' style={{color: 'grey'}} onClick={() => this.HandleEditPost(id)}/></Link>
-              <Link to='/'><List.Icon name='trash' style={{color: 'red'}}/></Link>
-            </Container>
 
-              <Container>
-                <Divider horizontal>Comments ({commentCount}) </Divider>
-                {!commentCount && <p>No comments yet!</p>}
-                <CommentsList />
-              </Container>
 
-            <Divider horizontal>Add new comment</Divider>
-            <AddComment parentId={id} />
+              <span className="center-item size-20px" name='trash' style={{color: 'red'}} onClick={() => this.HandleDeletePost(id)} >
+                <Icon name='trash' />
+              </span>
+
+              <span className="center-item size-20px" name='edit' style={{color: 'grey'}} onClick={() => this.HandleEditePost(id)} >
+                <Icon name='pencil' />
+              </span>
+
+
           </Container>
-        </Grid.Column>
-      </Grid>
-    )
-  }
+
+          <Container>
+            <Divider horizontal>Comments ({commentCount}) </Divider>
+            {!commentCount && <p>No comments yet!</p>}
+            <CommentsList />
+          </Container>
+
+          <Divider horizontal>Add new comment</Divider>
+          <AddComment parentId={id} />
+        </Container>
+      </Grid.Column>
+    </Grid>
+  )
+}
 }
 
 const mapStateToProps = (state, ownProps) => {
@@ -80,8 +92,10 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 
-  const mapDispatchToProps = dispatch => ({
-    fetchComments: (parentId) => dispatch(fetchComments(parentId)),
-  });
+const mapDispatchToProps = dispatch => ({
+  deletePost: (id) => dispatch(deletePost(id)),
+  // editPost: (id) => dispatch(editPost(id)),
+  fetchComments: (parentId) => dispatch(fetchComments(parentId)),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(SinglePost);

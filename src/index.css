@@ -23,9 +23,9 @@
 .pb-2 {
   padding-bottom: 2rem;
 }
-.caret {
-  font-size: 25px !important;
+.size-20px {
+  font-size: 20px !important;
 }
-.caret:hover {
+.size-20px:hover {
   cursor: pointer;
 }

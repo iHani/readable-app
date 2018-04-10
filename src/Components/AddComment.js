@@ -44,15 +44,10 @@ class AddComment extends Component {
     )
   }
 }
-//
-// const mapStateToProps = () => ({
-//   body: '',
-//   author: '',
-// })
 
 const mapDispatchToProps = dispatch => ({
   postComment: (comment) => dispatch(postComment(comment)),
-  fetchPosts: (id) => dispatch(fetchPosts(id))
+  fetchPosts: () => dispatch(fetchPosts())
 });
 
 export default connect(undefined, mapDispatchToProps)(AddComment);

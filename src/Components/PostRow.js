@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import * as BlogAPI from '../Utils/BlogAPI';
+import { connect } from 'react-redux';
 import { Icon, Label, List } from 'semantic-ui-react';
 import { Voter } from './index';
+import { fetchPosts, deletePost } from '../actions/posts';
 
 class PostRow extends Component {
 
   HandleDeletePost = (id) => {
-    BlogAPI.deletePost(id).then(res => console.log(`post ${res.id} deleted`))
+    this.props.deletePost(id)
+
   }
   render () {
     const { id, voteScore, commentCount, category, title, author } = this.props.post
@@ -42,4 +44,9 @@ class PostRow extends Component {
   }
 }
 
-export default PostRow;
+const mapDispatchToProps = dispatch => ({
+  deletePost: (id) => dispatch(deletePost(id)),
+  fetchPosts: () => dispatch(fetchPosts())
+});
+
+export default connect(undefined, mapDispatchToProps)(PostRow);
