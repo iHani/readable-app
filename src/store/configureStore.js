@@ -6,6 +6,13 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 export default () => {
   const store = createStore(
+    // blog: {
+    //   {
+    //     posts: postsReducer,
+    //     comments: commentsReducer,
+    //     categories: categoriesReducer
+    //   }
+    // }
     combineReducers({
       posts: postsReducer,
       comments: commentsReducer,

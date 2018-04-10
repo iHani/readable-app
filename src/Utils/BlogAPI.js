@@ -12,11 +12,6 @@ const headers = {
   'Content-Type': 'application/json'
 }
 
-// export const get = (bookId) =>
-// fetch(`${api}/books/${bookId}`, { headers })
-// .then(res => res.json())
-// .then(data => data.book)
-
 export const getAllCategories = () =>
 fetch(`${api}/categories`, { headers })
 .then(res => res.json())

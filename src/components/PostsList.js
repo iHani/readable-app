@@ -6,6 +6,9 @@ import { PostRow, Sorter } from './index';
 
 class PostsList extends Component {
 
+componentDidMount () {
+  // console.log('PostsList componentDidMount',this.props.state);
+}
   render () {
     return (
       <Container className='flex-main'>
@@ -43,6 +46,7 @@ class PostsList extends Component {
 }
 
 const mapStateToProps = (state) => ({
+  state,
   posts: state.posts.posts
 });
 

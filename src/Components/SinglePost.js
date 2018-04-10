@@ -4,10 +4,13 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom';
 import { Container, Divider, Grid, Header, Label, List } from 'semantic-ui-react';
 import { AddComment, CommentsList, Voter } from './index';
-import { fetchPost } from '../actions/posts';
+import { fetchComments } from '../actions/comments';
 
 class SinglePost extends Component {
 
+  componentDidMount () {
+    this.props.fetchComments(this.props.match.params.id)
+  }
   HandleDeletePost = (id) => {
     // BlogAPI.deletePost(id).then(res => console.log(`post ${res.id} deleted`))
   }
@@ -47,12 +50,11 @@ class SinglePost extends Component {
               <Link to='/'><List.Icon name='trash' style={{color: 'red'}}/></Link>
             </Container>
 
-            {commentCount > 0 &&
               <Container>
                 <Divider horizontal>Comments ({commentCount}) </Divider>
-                <CommentsList parentId={id} />
+                {!commentCount && <p>No comments yet!</p>}
+                <CommentsList />
               </Container>
-            }
 
             <Divider horizontal>Add new comment</Divider>
             <AddComment parentId={id} />
@@ -63,23 +65,23 @@ class SinglePost extends Component {
   }
 }
 
-// const initPost = { id: "statuicddididii", timestamp: 1467166872634, title: "STATIC POST", body: "Everyone says so after all.", voteScore: 850, commentCount: 7, author: 'thing three', category: 'REDUX', comments: [] }
-
 const mapStateToProps = (state, ownProps) => {
   if (state.posts.isPostsFetched) {
     return {
       post: state.posts.posts.find(post => post.id === ownProps.match.params.id),
+      comments: state.comments.comments
     }
   } else {
     return {
-      post: {}
+      post: {},
+      comments: []
     }
   }
 }
 
 
-const mapDispatchToProps = dispatch => ({
-  fetchPost: (id) => dispatch(fetchPost(id))
-});
+  const mapDispatchToProps = dispatch => ({
+    fetchComments: (parentId) => dispatch(fetchComments(parentId)),
+  });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SinglePost);

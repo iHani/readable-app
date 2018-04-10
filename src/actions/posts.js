@@ -12,7 +12,7 @@ export const fetchPosts = () => dispatch => (
   .getAllPosts()
   .then(posts => {
     dispatch(receivedPosts(posts))
-    dispatch({ type: POST_FETCHED, isPostsFetched: true })
+    dispatch(postFetched())
   })
 );
 
@@ -20,6 +20,12 @@ export const receivedPosts = posts => ({
   type: RECEIVED_POST,
   posts
 });
+
+export const postFetched = () => ({
+  type: POST_FETCHED,
+  isPostsFetched: true
+});
+
 
 /*
 * Post Reducer:

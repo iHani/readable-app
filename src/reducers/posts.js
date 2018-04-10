@@ -1,7 +1,7 @@
 import {
   RECEIVED_POST,
   POST_FETCHED,
-  VOTE_POST
+  VOTE_POST,
 } from '../actions/posts'
 
 const initialPostState = {

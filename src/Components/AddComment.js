@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
 import serializeForm from 'form-serialize';
+import { connect } from 'react-redux';
 import uuid from 'uuid';
-import * as BlogAPI from '../Utils/BlogAPI';
 import { Container, Form } from 'semantic-ui-react';
+import { postComment } from '../actions/comments';
+import { fetchPosts } from '../actions/posts';
 
 class AddComment extends Component {
+
+  state = {
+    body: '',
+    author: '',
+  }
 
   submitNewComment (e) {
     const parentId = e.target.getAttribute('parentid');
@@ -12,18 +19,22 @@ class AddComment extends Component {
     const comment = {
       id: uuid(),
       parentId,
+      timestamp: Date.now(),
       body,
       author,
-      timestamp: Date.now(),
     }
-    BlogAPI.postComment(comment);
+    this.props.postComment(comment)
+    this.props.fetchPosts();
+    this.setState({ body: '', author: '' })
   }
+
+  handleInputChange = e => this.setState({ [e.target.name]: e.target.value });
 
   render () {
     return (
-      <Form parentid={this.props.parentId} onSubmit={this.submitNewComment}>
-        <Form.TextArea name='body' label='Comment' placeholder='Your comment...' />
-        <Form.Input name='author' fluid label='Name' placeholder='Your name' />
+      <Form parentid={this.props.parentId} onSubmit={this.submitNewComment.bind(this)}>
+        <Form.TextArea name='body' label='Comment' placeholder='Your comment...'  value={this.state.body} onChange={this.handleInputChange} />
+        <Form.Input name='author' fluid label='Name' placeholder='Your name' value={this.state.author} onChange={this.handleInputChange} />
         <Form.Field>
           <Container textAlign='center'>
             <Form.Button content='Submit' />
@@ -33,5 +44,15 @@ class AddComment extends Component {
     )
   }
 }
+//
+// const mapStateToProps = () => ({
+//   body: '',
+//   author: '',
+// })
 
-export default AddComment;
+const mapDispatchToProps = dispatch => ({
+  postComment: (comment) => dispatch(postComment(comment)),
+  fetchPosts: (id) => dispatch(fetchPosts(id))
+});
+
+export default connect(undefined, mapDispatchToProps)(AddComment);

@@ -60,7 +60,6 @@ class AppRouter extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  // console.log('AppRouter state', state.categories.categories);
   return {
     posts: state.posts.posts
   }
