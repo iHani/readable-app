@@ -30,14 +30,7 @@ componentDidMount () {
         <Divider></Divider>
 
         <List relaxed verticalAlign='middle'>
-          {this.props.posts && this.props.posts.map(post => {
-            return (
-              <PostRow
-                key={post.id}
-                post={post}
-              />
-            )
-          })}
+          {this.props.posts && this.props.posts.map(({ id }) => <PostRow key={id} id={id} />)}
         </List>
 
       </Container>
@@ -46,7 +39,6 @@ componentDidMount () {
 }
 
 const mapStateToProps = (state) => ({
-  state,
   posts: state.posts.posts
 });
 

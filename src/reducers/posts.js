@@ -1,4 +1,5 @@
 import {
+  POST_A_POST,
   RECEIVED_POST,
   POSTS_FETCHED,
   VOTE_POST,
@@ -12,8 +13,15 @@ const initialPostState = {
 }
 
 export default (state = initialPostState, action) => {
-  const { id, posts, isPostsFetched } = action
+  const { id, post, posts, isPostsFetched } = action
   switch (action.type) {
+
+    case POST_A_POST :
+    return {
+      ...state,
+      posts: [ ...state.posts, post ]
+    }
+
     case RECEIVED_POST :
     return {
       ...state,

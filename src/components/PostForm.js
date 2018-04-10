@@ -1,12 +1,41 @@
 import React, { Component } from 'react';
-// import uuid from 'uuid';
+import uuid from 'uuid';
+import serializeForm from 'form-serialize';
 import { connect } from 'react-redux';
 import { Container, Form } from 'semantic-ui-react';
+import { postPost, fetchPosts } from '../actions/posts';
+import createHistory from 'history/createBrowserHistory';
+
+const history = createHistory({ forceRefresh: true });
 
 class PostForm extends Component {
+  //
+  // state = {
+  //   id: '',
+  //   timestamp: '',
+  //   title: '',
+  //   body: '',
+  //   author: '',
+  //   category: '',
+  // }
 
-  postFormSubmit () {
+  postFormSubmit (e) {
     console.log('submitted');
+
+    const { title, body, author, category } = serializeForm(e.target, { hash: true });
+    const post = {
+      id: uuid(),
+      timestamp: Date.now(),
+      title,
+      body,
+      author,
+      category,
+    }
+    // console.log(post);
+    this.props.postPost(post)
+    this.props.fetchPosts()
+    history.push(`/posts/${post.id}`);
+
   }
 
   handleInputChange = e => this.setState({ [e.target.name]: e.target.value });
@@ -20,11 +49,11 @@ class PostForm extends Component {
           <Form.Field>
             <label>Category</label>
             <select name='category'
-               onChange={this.handleInputChange}>
-              {/* {this.props.categories.map(category => {
+              onChange={this.handleInputChange}>
+              {this.props.categories.map(category => {
                 const { name } = category
                 return <option key={name} value={name}>{name}</option>
-              })} */}
+              })}
             </select>
 
           </Form.Field>
@@ -54,13 +83,16 @@ class PostForm extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
+  console.log('PostForm', state);
   return {
-    categories: 'state.posts.posts'
+    categories: state.categories.categories
   }
 };
 
-// const mapDispatchToProps = dispatch => ({
-//   fetchCategories: '() => dispatch(fetchCategories())'
-// });
+const mapDispatchToProps = dispatch => ({
+  postPost: (post) => dispatch(postPost(post)),
+  fetchPosts: () => dispatch(fetchPosts())
 
-export default connect(mapStateToProps)(PostForm);
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostForm);

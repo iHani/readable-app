@@ -1,4 +1,5 @@
 import * as BlogAPI from '../Utils/BlogAPI';
+export const POST_A_POST = 'POST_A_POST';
 export const RECEIVED_POST = 'RECEIVED_POST';
 export const VOTE_POST = 'VOTE_POST';
 export const POSTS_FETCHED = 'POST_FETCHED';
@@ -27,6 +28,18 @@ export const postsFetched = () => ({
   isPostsFetched: true
 });
 
+export const postPost = (post) => dispatch => (
+  BlogAPI
+  .postPost(post)
+  .then(post => {
+    dispatch(postAPost(post))
+  })
+);
+
+export const postAPost = post => ({
+  type: POST_A_POST,
+  post
+});
 
 export const fetchPost = (id) => dispatch => (
   BlogAPI
@@ -54,13 +67,10 @@ export const updatePostScore = ({ id, voteScore }) => ({
 export const deletePost = (id) => dispatch => (
   BlogAPI
   .deletePost(id)
-  .then(({ id }) => {
-    console.log('deletePost', id);
-    dispatch(postDelated(id))
-  })
+  .then(({ id }) => dispatch(postDeleted(id)))
 );
 
-export const postDelated = id => ({
+export const postDeleted = id => ({
   type: POST_DELETED,
   id
 });

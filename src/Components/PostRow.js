@@ -8,9 +8,9 @@ import { fetchPosts, deletePost } from '../actions/posts';
 class PostRow extends Component {
 
   HandleDeletePost = (id) => {
-    this.props.deletePost(id)
-
+    this.props.deletePost(id);
   }
+
   render () {
     const { id, voteScore, commentCount, category, title, author } = this.props.post
 
@@ -26,7 +26,9 @@ class PostRow extends Component {
         </List.Content>
 
         <List.Content floated='right'>
-          <Label as='a' color='green'>{category}</Label>
+          <Link to={`/${category}`}>
+            <Label color='green'>{category}</Label>
+          </Link>
           <Label>
             <List.Icon name='comments' /> {commentCount}
           </Label>
@@ -44,9 +46,17 @@ class PostRow extends Component {
   }
 }
 
+const mapStateToProps = (state, ownProps) => {
+  const postArr = state.posts.posts.filter(({ id }) => id === ownProps.id)
+  const post = Object.assign({}, ...postArr)
+  return {
+    post
+   }
+}
+
 const mapDispatchToProps = dispatch => ({
   deletePost: (id) => dispatch(deletePost(id)),
   fetchPosts: () => dispatch(fetchPosts())
 });
 
-export default connect(undefined, mapDispatchToProps)(PostRow);
+export default connect(mapStateToProps, mapDispatchToProps)(PostRow);

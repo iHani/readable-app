@@ -33,7 +33,7 @@ class CategoryPage extends Component {
             return (
               <PostRow
                 key={post.id}
-                post={post}
+                id={post.id}
               />
             )
           })}
@@ -46,11 +46,8 @@ class CategoryPage extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   const currentCategory = ownProps.match.params.category
-  const posts = state.posts.posts ?
-  state.posts.posts.filter(post => post.category === currentCategory)
-  : []
   return {
-    posts,
+    posts: state.posts.posts.filter(({ category }) => category === currentCategory),
     currentCategory
   }
 }

@@ -50,7 +50,6 @@ class SinglePost extends Component {
             </Container>
             <Container floated='right'>
 
-
               <span className="center-item size-20px" name='trash' style={{color: 'red'}} onClick={() => this.HandleDeletePost(id)} >
                 <Icon name='trash' />
               </span>
@@ -58,7 +57,6 @@ class SinglePost extends Component {
               <span className="center-item size-20px" name='edit' style={{color: 'grey'}} onClick={() => this.HandleEditePost(id)} >
                 <Icon name='pencil' />
               </span>
-
 
           </Container>
 
