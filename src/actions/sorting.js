@@ -18,3 +18,16 @@ export const highestVote = () => ({
 export const lowestVote = () => ({
   type: SORT_BY_LOWEST_VOTE
 });
+
+export const sortBy = (posts, option) => {
+  return posts.sort((a, b) => {
+    switch (option) {
+      case 'newest': return a.timestamp < b.timestamp ? 1 : -1;
+      case 'oldest': return a.timestamp < b.timestamp ? -1 : 1;
+      case 'highestVote': return a.voteScore < b.voteScore ? 1 : -1;
+      case 'lowestVote': return a.voteScore < b.voteScore ? -1 : 1;
+      default:
+    }
+    return {}
+  })
+}

@@ -13,25 +13,13 @@ class Sorter extends Component {
   ]
 
   handleChangeSorter = (e, { value }) => {
+    const { newest, oldest, highestVote, lowestVote  } = this.props
     switch (value) {
-      case 'newest':
-      this.props.newest()
-      break;
-
-      case 'oldest':
-      this.props.oldest()
-      break;
-
-      case 'highestVote':
-      this.props.highestVote()
-      break;
-
-      case 'lowestVote':
-      this.props.lowestVote()
-      break;
-
-      default:
-      this.props.newest()
+      case 'newest': return newest()
+      case 'oldest': return oldest()
+      case 'highestVote': return highestVote()
+      case 'lowestVote': return lowestVote()
+      default: newest()
     }
   };
 
@@ -62,6 +50,5 @@ class Sorter extends Component {
       lowestVote: () => dispatch(lowestVote()),
     }
   }
-
 
   export default connect(mapStateToProps, mapDispatchToProps)(Sorter);

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Button, Container, Divider, Icon, List, Grid } from 'semantic-ui-react';
 import { PostRow, Sorter } from './index';
+import { sortBy } from '../actions/sorting';
 
 class PostsList extends Component {
 
@@ -36,8 +37,13 @@ class PostsList extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  posts: state.posts.posts
-});
+const mapStateToProps = (state) => {
+  const selectedSortBy = state.sorting.selectedSortBy
+
+  return {
+    selectedSortBy, // I don't really need this just added it so redux can keep track of its changes in this component!
+    posts: sortBy(state.posts.posts, selectedSortBy)
+  }
+}
 
 export default connect(mapStateToProps)(PostsList);

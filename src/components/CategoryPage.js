@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Button, Container, Divider, Grid, Header, Icon, List } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { PostRow, Sorter } from './index';
+import { sortBy } from '../actions/sorting';
 
 class CategoryPage extends Component {
 
@@ -46,9 +47,11 @@ class CategoryPage extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   const currentCategory = ownProps.match.params.category
+  const posts = state.posts.posts.filter(({ category }) => category === currentCategory)
+  const option = state.sorting.selectedSortBy
+
   return {
-    posts: state.posts.posts.filter(({ category }) => category === currentCategory),
-    currentCategory
+    posts: sortBy(posts, option)
   }
 }
 
