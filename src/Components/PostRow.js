@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import moment from 'moment';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Icon, Label, List } from 'semantic-ui-react';
@@ -7,12 +8,10 @@ import { fetchPosts, deletePost } from '../actions/posts';
 
 class PostRow extends Component {
 
-  HandleDeletePost = (id) => {
-    this.props.deletePost(id);
-  }
+  HandleDeletePost = () => this.props.deletePost(this.props.post.id)
 
   render () {
-    const { id, voteScore, commentCount, category, title, author } = this.props.post
+    const { id, voteScore, commentCount, category, title, author, timestamp } = this.props.post
 
     return (
       <List.Item>
@@ -33,12 +32,12 @@ class PostRow extends Component {
             <List.Icon name='comments' /> {commentCount}
           </Label>
           <Link to='/'><Icon name='pencil' style={{color: 'grey'}} /></Link>
-          <Link to='/'><Icon name='trash' style={{color: 'red'}} onClick={() => this.HandleDeletePost(id)}/></Link>
+          <Link to='/'><Icon name='trash' style={{color: 'red'}} onClick={this.HandleDeletePost}/></Link>
         </List.Content>
 
         <List.Content floated='left'>
           <Link to={`/posts/${id}`}><h3>{title}</h3></Link>
-          <List.Description>By {author}</List.Description>
+          <List.Description>By {author} on {moment(timestamp).calendar()}</List.Description>
         </List.Content>
 
       </List.Item>

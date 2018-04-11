@@ -6,9 +6,6 @@ import { PostRow, Sorter } from './index';
 
 class PostsList extends Component {
 
-componentDidMount () {
-  // console.log('PostsList componentDidMount',this.props.state);
-}
   render () {
     return (
       <Container className='flex-main'>
@@ -30,6 +27,7 @@ componentDidMount () {
         <Divider></Divider>
 
         <List relaxed verticalAlign='middle'>
+          {this.props.posts.length === 0 && <p>No posts to display!</p>}
           {this.props.posts && this.props.posts.map(({ id }) => <PostRow key={id} id={id} />)}
         </List>
 

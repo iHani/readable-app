@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import moment from 'moment';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { Container, Divider, Grid, Header, Icon, Label } from 'semantic-ui-react';
 import { AddComment, CommentsList, Voter } from './index';
 import { fetchComments } from '../actions/comments';
@@ -37,7 +38,9 @@ class SinglePost extends Component {
         <Grid.Column width={14}>
           <Container>
             <Header size='large'>{title}
-              <Label color='green'>{category}</Label>
+              <Link to={`/${category}`}>
+                <Label color='green'>{category}</Label>
+              </Link>
               <Header.Subheader>
                 By <strong>{author}</strong> on {moment(timestamp).calendar()}
               </Header.Subheader>

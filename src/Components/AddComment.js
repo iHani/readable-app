@@ -23,9 +23,9 @@ class AddComment extends Component {
       body,
       author,
     }
-    this.props.postComment(comment)
+    this.props.postComment(comment);
     this.props.fetchPosts();
-    this.setState({ body: '', author: '' })
+    this.setState({ body: '', author: '' });
   }
 
   handleInputChange = e => this.setState({ [e.target.name]: e.target.value });

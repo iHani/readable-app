@@ -4,6 +4,7 @@ import {
   POSTS_FETCHED,
   VOTE_POST,
   POST_DELETED,
+  SORT_BY,
 } from '../actions/posts'
 
 const initialPostState = {
@@ -49,6 +50,11 @@ export default (state = initialPostState, action) => {
     return {
       ...state,
       posts: state.posts.filter(post => post.id !== id)
+    }
+
+    case SORT_BY :
+    return {
+      ...state
     }
 
     default :

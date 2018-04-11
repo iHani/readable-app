@@ -38,8 +38,6 @@ class PostForm extends Component {
 
   }
 
-  handleInputChange = e => this.setState({ [e.target.name]: e.target.value });
-
   render () {
     return (
       <Container text style={{ marginTop: '1em' }}>
@@ -48,8 +46,7 @@ class PostForm extends Component {
 
           <Form.Field>
             <label>Category</label>
-            <select name='category'
-              onChange={this.handleInputChange}>
+            <select name='category'>
               {this.props.categories.map(category => {
                 const { name } = category
                 return <option key={name} value={name}>{name}</option>
@@ -60,14 +57,14 @@ class PostForm extends Component {
 
           <Form.Field>
             <label>Title</label>
-            <input placeholder='Title' name='title' onChange={this.handleInputChange}/>
+            <input placeholder='Title' name='title' />
           </Form.Field>
 
-          <Form.TextArea rows={8} label='Body' name='body' onChange={this.handleInputChange}/>
+          <Form.TextArea rows={8} label='Body' name='body' />
 
           <Form.Field>
             <label>Author</label>
-            <input placeholder='Your name' name='author' onChange={this.handleInputChange}/>
+            <input placeholder='Your name' name='author' />
           </Form.Field>
 
           <Form.Field>

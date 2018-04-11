@@ -4,6 +4,7 @@ export const RECEIVED_POST = 'RECEIVED_POST';
 export const VOTE_POST = 'VOTE_POST';
 export const POSTS_FETCHED = 'POST_FETCHED';
 export const POST_DELETED = 'POST_DELETED';
+export const SORT_BY = 'SORT_BY';
 
 /*
 * Posts Reducer:
@@ -74,3 +75,8 @@ export const postDeleted = id => ({
   type: POST_DELETED,
   id
 });
+
+export const sortBy = option => ({
+  type: SORT_BY,
+  option
+})
