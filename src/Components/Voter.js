@@ -7,11 +7,11 @@ import { voteComment } from '../actions/comments';
 class Voter extends Component {
 
   caretClicked (option) {
-    const { type, id } = this.props
+    const { type, id } = this.props;
     if (type === 'post') {
-      this.props.dispatchVotePost(id, option)
+      this.props.dispatchVotePost(id, option);
     } else if (type === 'comment') {
-      this.props.dispatchVoteComment(id, option)
+      this.props.dispatchVoteComment(id, option);
     } else {
       console.log('Error: Wrong value of "type"');
     }
@@ -28,7 +28,7 @@ class Voter extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   dispatchVotePost: (id, option) => dispatch(votePost(id, option)),
   dispatchVoteComment: (id, option) => dispatch(voteComment(id, option))
 });

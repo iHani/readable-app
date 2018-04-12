@@ -1,21 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { List } from 'semantic-ui-react';
-import { Voter } from './index';
+import { Icon, List } from 'semantic-ui-react';
+import { Voter, ModalEditComment } from './index';
+import { deleteComment } from '../actions/comments';
 
 class CommentsList extends Component {
 
-  HandleDeleteComment = (id) => {
-    // BlogAPI.deleteComment(id).then(res => console.log(`post ${res.id} deleted`))
-    // console.log('deleted?', id);
-  }
+  HandleDeleteComment = (id) => this.props.deleteComment(id)
 
   render () {
     return (
       <List divided relaxed>
         {this.props.comments && this.props.comments.map(comment => {
-            const { id, voteScore, author, body  } = comment
+            const { id, voteScore, author, body, timestamp  } = comment
             return (
               <List.Item key={id}>
 
@@ -28,8 +25,10 @@ class CommentsList extends Component {
                 </List.Content>
 
                 <List.Content floated='right'>
-                  <Link to='/'><List.Icon name='pencil' style={{color: 'grey'}} /></Link>
-                  <Link to='/'><List.Icon name='trash' style={{color: 'red'}} onClick={() => this.HandleDeleteComment(id)}/></Link>
+                  <span className="red center-item size-15px pointer" name='trash' onClick={() => this.HandleDeleteComment(id)} >
+                    <Icon name='trash' />
+                  </span>
+                  <ModalEditComment id={id} content={{ timestamp, body }}/>
                 </List.Content>
 
                 <List.Content floated='left'>
@@ -51,4 +50,9 @@ class CommentsList extends Component {
     }
   }
 
-  export default connect(mapStateToProps)(CommentsList);
+
+  const mapDispatchToProps = (dispatch) => ({
+    deleteComment: (id) => dispatch(deleteComment(id)),
+  });
+
+  export default connect(mapStateToProps, mapDispatchToProps)(CommentsList);

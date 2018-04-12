@@ -23,9 +23,18 @@
 .pb-2 {
   padding-bottom: 2rem;
 }
+.size-15px {
+  font-size: 15px !important;
+}
 .size-20px {
   font-size: 20px !important;
 }
-.size-20px:hover {
+.pointer:hover {
   cursor: pointer;
+}
+.red {
+  color: red;
+}
+.grey {
+  color: grey;
 }

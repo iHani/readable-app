@@ -4,8 +4,8 @@ import {
   POSTS_FETCHED,
   VOTE_POST,
   POST_DELETED,
-  SORT_BY,
-} from '../actions/posts'
+  POST_UPDATED
+} from '../actions/posts';
 
 const initialPostState = {
   posts: [],
@@ -14,7 +14,7 @@ const initialPostState = {
 }
 
 export default (state = initialPostState, action) => {
-  const { id, post, posts, isPostsFetched } = action
+  const { id, post, posts, isPostsFetched } = action;
   switch (action.type) {
 
     case POST_A_POST :
@@ -38,12 +38,9 @@ export default (state = initialPostState, action) => {
     case VOTE_POST :
     return {
       ...state,
-      posts: state.posts.map(post => {
-        if (post.id === action.id) {
-          post.voteScore = action.voteScore
-        }
-        return post;
-      })
+      posts: state.posts.map(post => post.id === action.id ?
+        Object.assign(post, { voteScore: action.voteScore })
+        : post)
     }
 
     case POST_DELETED :
@@ -52,9 +49,10 @@ export default (state = initialPostState, action) => {
       posts: state.posts.filter(post => post.id !== id)
     }
 
-    case SORT_BY :
+    case POST_UPDATED :
     return {
-      ...state
+      ...state,
+      posts: state.posts.map(p => p.id === action.post.id ? action.post : p)
     }
 
     default :

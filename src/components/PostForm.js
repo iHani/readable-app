@@ -9,19 +9,8 @@ import createHistory from 'history/createBrowserHistory';
 const history = createHistory({ forceRefresh: true });
 
 class PostForm extends Component {
-  //
-  // state = {
-  //   id: '',
-  //   timestamp: '',
-  //   title: '',
-  //   body: '',
-  //   author: '',
-  //   category: '',
-  // }
 
   postFormSubmit (e) {
-    console.log('submitted');
-
     const { title, body, author, category } = serializeForm(e.target, { hash: true });
     const post = {
       id: uuid(),
@@ -31,11 +20,9 @@ class PostForm extends Component {
       author,
       category,
     }
-    // console.log(post);
-    this.props.postPost(post)
-    this.props.fetchPosts()
+    this.props.postPost(post);
+    this.props.fetchPosts();
     history.push(`/posts/${post.id}`);
-
   }
 
   render () {
@@ -47,10 +34,7 @@ class PostForm extends Component {
           <Form.Field>
             <label>Category</label>
             <select name='category'>
-              {this.props.categories.map(category => {
-                const { name } = category
-                return <option key={name} value={name}>{name}</option>
-              })}
+              {this.props.categories.map(({ name }) => <option key={name} value={name}>{name}</option>)}
             </select>
 
           </Form.Field>
@@ -79,17 +63,13 @@ class PostForm extends Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-  console.log('PostForm', state);
-  return {
-    categories: state.categories.categories
-  }
-};
+const mapStateToProps = (state, ownProps) => ({
+  categories: state.categories.categories
+});
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   postPost: (post) => dispatch(postPost(post)),
   fetchPosts: () => dispatch(fetchPosts())
-
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostForm);

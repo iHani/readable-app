@@ -4,12 +4,8 @@ export const RECEIVED_POST = 'RECEIVED_POST';
 export const VOTE_POST = 'VOTE_POST';
 export const POSTS_FETCHED = 'POST_FETCHED';
 export const POST_DELETED = 'POST_DELETED';
-export const SORT_BY = 'SORT_BY';
+export const POST_UPDATED = 'POST_UPDATED';
 
-/*
-* Posts Reducer:
-* RECEIVED_POST
-*/
 export const fetchPosts = () => dispatch => (
   BlogAPI
   .getAllPosts()
@@ -19,7 +15,7 @@ export const fetchPosts = () => dispatch => (
   })
 );
 
-export const receivedPosts = posts => ({
+export const receivedPosts = (posts) => ({
   type: RECEIVED_POST,
   posts
 });
@@ -29,7 +25,7 @@ export const postsFetched = () => ({
   isPostsFetched: true
 });
 
-export const postPost = (post) => dispatch => (
+export const postPost = (post) => (dispatch) => (
   BlogAPI
   .postPost(post)
   .then(post => {
@@ -37,23 +33,23 @@ export const postPost = (post) => dispatch => (
   })
 );
 
-export const postAPost = post => ({
+export const postAPost = (post) => ({
   type: POST_A_POST,
   post
 });
 
-export const fetchPost = (id) => dispatch => (
+export const fetchPost = (id) => (dispatch) => (
   BlogAPI
   .getPost(id)
   .then(post => dispatch(receivedPost(post)))
 );
 
-export const receivedPost = post => ({
+export const receivedPost = (post) => ({
   type: RECEIVED_POST,
   post
 });
 
-export const votePost = (id, option) => dispatch => (
+export const votePost = (id, option) => (dispatch) => (
   BlogAPI
   .votePost(id, option)
   .then(res => dispatch(updatePostScore(res)))
@@ -65,18 +61,26 @@ export const updatePostScore = ({ id, voteScore }) => ({
   voteScore
 });
 
-export const deletePost = (id) => dispatch => (
+export const deletePost = (id) => (dispatch) => (
   BlogAPI
   .deletePost(id)
   .then(({ id }) => dispatch(postDeleted(id)))
 );
 
-export const postDeleted = id => ({
+export const postDeleted = (id) => ({
   type: POST_DELETED,
   id
 });
 
-export const sortBy = option => ({
-  type: SORT_BY,
-  option
-})
+export const editPost = (id, post) => (dispatch) => (
+  BlogAPI
+  .editPost(id, post)
+  .then(post => {
+    dispatch(postUpdated(post))
+  })
+);
+
+export const postUpdated = (post) => ({
+  type: POST_UPDATED,
+  post
+});

@@ -46,9 +46,9 @@ class CategoryPage extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const currentCategory = ownProps.match.params.category
-  const posts = state.posts.posts.filter(({ category }) => category === currentCategory)
-  const option = state.sorting.selectedSortBy
+  const currentCategory = ownProps.match.params.category;
+  const posts = state.posts.posts.filter(({ category }) => category === currentCategory);
+  const option = state.sorting.selectedSortBy;
 
   return {
     posts: sortBy(posts, option)

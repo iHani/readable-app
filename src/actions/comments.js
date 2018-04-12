@@ -2,11 +2,9 @@ import * as BlogAPI from '../Utils/BlogAPI';
 export const RECEIVED_COMMENTS = 'RECEIVED_COMMENTS';
 export const SUBMIT_COMMENT = 'SUBMIT_COMMENT';
 export const VOTE_COMMENT = 'VOTE_COMMENT';
+export const DELETE_COMMENT = 'DELETE_COMMENT';
+export const COMMENT_UPDATED = 'COMMENT_UPDATED';
 
-/*
-* Comments Reducer:
-* GET_ALL_COMMENTS
-*/
 export const fetchComments = (parentid) => (dispatch) => (
   BlogAPI
   .getComments(parentid)
@@ -43,4 +41,30 @@ export const updateCommentScore = ({ id, voteScore }) => ({
   type: VOTE_COMMENT,
   id,
   voteScore
+});
+
+export const deleteComment = (id) => (dispatch) => (
+  BlogAPI
+  .deleteComment(id)
+  .then(({ id }) => {
+    dispatch(deleteAComment(id))
+  })
+);
+
+export const deleteAComment = (id) => ({
+  type: DELETE_COMMENT,
+  id
+});
+
+export const editComment = (id, comment) => (dispatch) => (
+  BlogAPI
+  .editComment(id, comment)
+  .then(comment => {
+    dispatch(commentUpdated(comment))
+  })
+);
+
+export const commentUpdated = (comment) => ({
+  type: COMMENT_UPDATED,
+  comment
 });

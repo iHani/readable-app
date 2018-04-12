@@ -6,14 +6,16 @@ import * as sortBy from '../actions/sorting';
 class Sorter extends Component {
 
   sortOptions = [
-    { value: 'newest', text: 'Newest' },
-    { value: 'oldest', text: 'Oldest' },
-    { value: 'highestVote', text: 'Highest voting' },
-    { value: 'lowestVote', text: 'Lowest voting' }
+    { value: 'newest', text: 'newest' },
+    { value: 'oldest', text: 'oldest' },
+    { value: 'highestVote', text: 'highest voting' },
+    { value: 'lowestVote', text: 'lowest voting' }
   ]
 
+  sorterText = (option) => this.sortOptions.filter(({ value }) => value === option)[0].text;
+
   handleChangeSorter = (e, { value }) => {
-    const { newest, oldest, highestVote, lowestVote  } = this.props
+    const { newest, oldest, highestVote, lowestVote  } = this.props;
     switch (value) {
       case 'newest': return newest()
       case 'oldest': return oldest()
@@ -27,7 +29,7 @@ class Sorter extends Component {
     return (
       <Dropdown
         simple
-        text={`Sort by ${this.props.selectedSortBy}`}
+        text={`Sort by ${this.sorterText(this.props.selectedSortBy)}`}
         options={this.sortOptions}
         onChange={this.handleChangeSorter}
         defaultValue={this.props.selectedSortBy}

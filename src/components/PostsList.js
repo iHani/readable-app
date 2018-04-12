@@ -38,8 +38,7 @@ class PostsList extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const selectedSortBy = state.sorting.selectedSortBy
-
+  const selectedSortBy = state.sorting.selectedSortBy;
   return {
     selectedSortBy, // I don't really need this just added it so redux can keep track of its changes in this component!
     posts: sortBy(state.posts.posts, selectedSortBy)

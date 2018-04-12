@@ -9,7 +9,7 @@ export const fetchCategories = () => dispatch => (
   })
 );
 
-export const receivedCategories = categories => ({
+export const receivedCategories = (categories) => ({
   type: RECEIVED_CATEGORIES,
   categories
 });

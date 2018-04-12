@@ -16,6 +16,6 @@ export default (state = initialCategoryState, action) => {
     }
 
     default :
-    return state
+    return state;
   }
 }

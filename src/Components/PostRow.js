@@ -3,15 +3,15 @@ import moment from 'moment';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Icon, Label, List } from 'semantic-ui-react';
-import { Voter } from './index';
+import { Voter, ModalEditPost } from './index';
 import { fetchPosts, deletePost } from '../actions/posts';
 
 class PostRow extends Component {
 
-  HandleDeletePost = () => this.props.deletePost(this.props.post.id)
+  HandleDeletePost = () => this.props.deletePost(this.props.post.id);
 
   render () {
-    const { id, voteScore, commentCount, category, title, author, timestamp } = this.props.post
+    const { id, voteScore, commentCount, category, title, body, author, timestamp } = this.props.post;
 
     return (
       <List.Item>
@@ -31,13 +31,15 @@ class PostRow extends Component {
           <Label>
             <List.Icon name='comments' /> {commentCount}
           </Label>
-          <Link to='/'><Icon name='pencil' style={{color: 'grey'}} /></Link>
+
+          <ModalEditPost id={id} content={{ title, body }}/>
+
           <Link to='/'><Icon name='trash' style={{color: 'red'}} onClick={this.HandleDeletePost}/></Link>
         </List.Content>
 
         <List.Content floated='left'>
           <Link to={`/posts/${id}`}><h3>{title}</h3></Link>
-          <List.Description>By {author} on {moment(timestamp).calendar()}</List.Description>
+          <List.Description>By <strong>{author}</strong> {moment(timestamp).calendar()}</List.Description>
         </List.Content>
 
       </List.Item>
@@ -53,7 +55,7 @@ const mapStateToProps = (state, ownProps) => {
    }
 }
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   deletePost: (id) => dispatch(deletePost(id)),
   fetchPosts: () => dispatch(fetchPosts())
 });

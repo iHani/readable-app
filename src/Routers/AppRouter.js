@@ -9,8 +9,8 @@ import { fetchCategories } from '../actions/categories';
 class AppRouter extends Component {
 
   componentWillMount () {
-    this.props.fetchPosts()
-    this.props.fetchCategories()
+    this.props.fetchPosts();
+    this.props.fetchCategories();
   }
 
   render () {
@@ -23,9 +23,7 @@ class AppRouter extends Component {
               <Route
                 exact
                 path='/'
-                // component={PostsList}
                 render={() => <PostsList posts={this.props.posts} />}
-
               />
               <Route
                 exact
@@ -42,14 +40,12 @@ class AppRouter extends Component {
                 exact
                 path='/posts/:id/edit'
                 component={PostForm}
-                // render={() => <PostForm editing={true} />}
               />
               <Route
                 exact
                 path='/:category'
                 component={CategoryPage}
               />
-
             </Switch>
           </Container>
           <Footer />
@@ -65,7 +61,7 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   fetchPosts: () => dispatch(fetchPosts()),
   fetchCategories: () => dispatch(fetchCategories())
 });

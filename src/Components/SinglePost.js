@@ -3,7 +3,7 @@ import moment from 'moment';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Container, Divider, Grid, Header, Icon, Label } from 'semantic-ui-react';
-import { AddComment, CommentsList, Voter } from './index';
+import { AddComment, CommentsList, Voter, ModalEditPost } from './index';
 import { fetchComments } from '../actions/comments';
 import { deletePost } from '../actions/posts';
 import createHistory from 'history/createBrowserHistory';
@@ -13,15 +13,11 @@ const history = createHistory({ forceRefresh: true });
 class SinglePost extends Component {
 
   componentDidMount () {
-    this.props.fetchComments(this.props.match.params.id)
+    this.props.fetchComments(this.props.match.params.id);
   }
   HandleDeletePost = (id) => {
-    this.props.deletePost(id)
+    this.props.deletePost(id);
     history.push(`/`);
-  }
-
-  HandleEditePost = (id) => {
-    console.log('HandleEditePost', id);
   }
 
   render() {
@@ -39,28 +35,24 @@ class SinglePost extends Component {
           <Container>
             <Header size='large'>{title}
               <Link to={`/${category}`}>
-                <Label color='green'>{category}</Label>
-              </Link>
-              <Header.Subheader>
-                By <strong>{author}</strong> on {moment(timestamp).calendar()}
-              </Header.Subheader>
-            </Header>
+              <Label color='green'>{category}</Label>
+            </Link>
+            <Header.Subheader>
+              By <strong>{author}</strong> on {moment(timestamp).calendar()}
+            </Header.Subheader>
+          </Header>
 
-            <Container text className='pt-1 pb-2'>
-              <p>
-                {body}
-              </p>
-            </Container>
-            <Container floated='right'>
+          <Container text className='pt-1 pb-2'>
+            <p>
+              {body}
+            </p>
+          </Container>
 
-              <span className="center-item size-20px" name='trash' style={{color: 'red'}} onClick={() => this.HandleDeletePost(id)} >
-                <Icon name='trash' />
-              </span>
-
-              <span className="center-item size-20px" name='edit' style={{color: 'grey'}} onClick={() => this.HandleEditePost(id)} >
-                <Icon name='pencil' />
-              </span>
-
+          <Container floated='right'>
+            <span className="red center-item size-20px pointer" name='trash' onClick={() => this.HandleDeletePost(id)} >
+              <Icon name='trash' />
+            </span>
+            <ModalEditPost id={id} content={{ title, body }} />
           </Container>
 
           <Container>
@@ -80,6 +72,7 @@ class SinglePost extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   if (state.posts.isPostsFetched) {
+    // TODO: isPostsFetched is not enough, check also if this post exist or redirect to 404
     return {
       post: state.posts.posts.find(post => post.id === ownProps.match.params.id),
       comments: state.comments.comments
@@ -92,10 +85,8 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   deletePost: (id) => dispatch(deletePost(id)),
-  // editPost: (id) => dispatch(editPost(id)),
   fetchComments: (parentId) => dispatch(fetchComments(parentId)),
 });
 

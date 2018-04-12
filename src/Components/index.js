@@ -9,6 +9,8 @@ import CommentsList from './CommentsList';
 import AddComment from './AddComment';
 import Voter from './Voter';
 import Sorter from './Sorter';
+import ModalEditPost from './ModalEditPost';
+import ModalEditComment from './ModalEditComment';
 
 export {
   Header,
@@ -22,4 +24,6 @@ export {
   CategoryPage,
   Voter,
   Sorter,
+  ModalEditPost,
+  ModalEditComment
 }
