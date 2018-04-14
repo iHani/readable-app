@@ -47,7 +47,7 @@ The app should open up http://localhost:3000 for you.
 
 ## Create React App
 
-This project was bootstrapped with Create React App and styled using React Semantoc-UI framework. You can find more information on how to perform common tasks here.
+This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app) and styled using [React Semantoc-UI](react.semantic-ui.com) framework. You can find more information on how to perform common tasks [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
 
 ## Contributing
 
