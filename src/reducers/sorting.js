@@ -1,8 +1,8 @@
 import {
   SORT_BY_NEWEST,
   SORT_BY_OLDEST,
-  SORT_BY_HIGHEST_VOTE,
-  SORT_BY_LOWEST_VOTE,
+  SORT_BY_HIGHEST_VOTES,
+  SORT_BY_LOWEST_VOTES,
 } from '../actions/sorting';
 
 const initialPostState = {
@@ -25,16 +25,16 @@ export default (state = initialPostState, action) => {
       selectedSortBy: 'oldest'
     };
 
-    case SORT_BY_HIGHEST_VOTE:
+    case SORT_BY_HIGHEST_VOTES:
     return {
       ...state,
-      selectedSortBy: 'highestVote'
+      selectedSortBy: 'highestVotes'
     };
 
-    case SORT_BY_LOWEST_VOTE:
+    case SORT_BY_LOWEST_VOTES:
     return {
       ...state,
-      selectedSortBy: 'lowestVote'
+      selectedSortBy: 'lowestVotes'
     };
 
     default:

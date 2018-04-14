@@ -8,7 +8,6 @@ import { sortBy } from '../actions/sorting';
 class CategoryPage extends Component {
 
   render () {
-    console.log(this.props);
     const { currentCategory, posts } = this.props;
     return (
       <Container text>

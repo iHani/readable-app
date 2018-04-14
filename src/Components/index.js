@@ -11,6 +11,7 @@ import Voter from './Voter';
 import Sorter from './Sorter';
 import ModalEditPost from './ModalEditPost';
 import ModalEditComment from './ModalEditComment';
+import NotFoundPage from './NotFoundPage';
 
 export {
   Header,
@@ -25,5 +26,6 @@ export {
   Voter,
   Sorter,
   ModalEditPost,
-  ModalEditComment
+  ModalEditComment,
+  NotFoundPage
 }

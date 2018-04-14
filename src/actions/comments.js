@@ -1,4 +1,5 @@
 import * as BlogAPI from '../Utils/BlogAPI';
+import { decreaseCommentCount } from './posts';
 export const RECEIVED_COMMENTS = 'RECEIVED_COMMENTS';
 export const SUBMIT_COMMENT = 'SUBMIT_COMMENT';
 export const VOTE_COMMENT = 'VOTE_COMMENT';
@@ -46,8 +47,9 @@ export const updateCommentScore = ({ id, voteScore }) => ({
 export const deleteComment = (id) => (dispatch) => (
   BlogAPI
   .deleteComment(id)
-  .then(({ id }) => {
-    dispatch(deleteAComment(id))
+  .then(({ id, parentId }) => {
+    dispatch(deleteAComment(id));
+    dispatch(decreaseCommentCount(parentId));
   })
 );
 

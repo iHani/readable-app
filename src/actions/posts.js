@@ -5,6 +5,7 @@ export const VOTE_POST = 'VOTE_POST';
 export const POSTS_FETCHED = 'POST_FETCHED';
 export const POST_DELETED = 'POST_DELETED';
 export const POST_UPDATED = 'POST_UPDATED';
+export const DECREASE_COMMENT_COUNT = 'DECREASE_COMMENT_COUNT';
 
 export const fetchPosts = () => (dispatch) => (
   BlogAPI
@@ -83,4 +84,10 @@ export const editPost = (id, post) => (dispatch) => (
 export const postUpdated = (post) => ({
   type: POST_UPDATED,
   post
+});
+
+// decreases post's commentCount number by 1
+export const decreaseCommentCount = (id) => ({
+  type: DECREASE_COMMENT_COUNT,
+  id
 });

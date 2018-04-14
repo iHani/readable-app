@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Container } from 'semantic-ui-react';
-import { Header, Footer, PostsList, PostForm, SinglePost, CategoryPage } from '../Components';
+import { Header, Footer, PostsList, PostForm, SinglePost, CategoryPage, NotFoundPage } from '../Components';
 import { connect } from 'react-redux';
 import { fetchPosts } from '../actions/posts';
 import { fetchCategories } from '../actions/categories';
@@ -45,6 +45,7 @@ class AppRouter extends Component {
                 path='/:category'
                 component={CategoryPage}
               />
+              <Route component={NotFoundPage} />
             </Switch>
           </Container>
           <Footer />

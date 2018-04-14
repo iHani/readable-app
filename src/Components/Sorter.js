@@ -8,19 +8,19 @@ class Sorter extends Component {
   sortOptions = [
     { value: 'newest', text: 'newest' },
     { value: 'oldest', text: 'oldest' },
-    { value: 'highestVote', text: 'highest voting' },
-    { value: 'lowestVote', text: 'lowest voting' }
+    { value: 'highestVotes', text: 'highest votes' },
+    { value: 'lowestVotes', text: 'lowest votes' }
   ];
 
   sorterText = (option) => this.sortOptions.filter(({ value }) => value === option)[0].text;
 
   handleChangeSorter = (e, { value }) => {
-    const { newest, oldest, highestVote, lowestVote  } = this.props;
+    const { newest, oldest, highestVotes, lowestVotes  } = this.props;
     switch (value) {
       case 'newest': return newest()
       case 'oldest': return oldest()
-      case 'highestVote': return highestVote()
-      case 'lowestVote': return lowestVote()
+      case 'highestVotes': return highestVotes()
+      case 'lowestVotes': return lowestVotes()
       default: newest()
     }
   };
@@ -43,12 +43,12 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => {
-  const { newest, oldest, highestVote, lowestVote } = sortBy;
+  const { newest, oldest, highestVotes, lowestVotes } = sortBy;
   return {
     newest: () => dispatch(newest()),
     oldest: () => dispatch(oldest()),
-    highestVote: () => dispatch(highestVote()),
-    lowestVote: () => dispatch(lowestVote()),
+    highestVotes: () => dispatch(highestVotes()),
+    lowestVotes: () => dispatch(lowestVotes()),
   }
 }
 
