@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import uuid from 'uuid';
 import serializeForm from 'form-serialize';
 import { connect } from 'react-redux';
-import { Container, Form } from 'semantic-ui-react';
+import { Container, Form, Header } from 'semantic-ui-react';
 import { postPost, fetchPosts } from '../actions/posts';
 import createHistory from 'history/createBrowserHistory';
 
@@ -28,6 +28,7 @@ class PostForm extends Component {
   render () {
     return (
       <Container text style={{ marginTop: '1em' }}>
+        <Header size='large'>Create new post</Header>
 
         <Form onSubmit={this.postFormSubmit.bind(this)}>
 
@@ -36,7 +37,6 @@ class PostForm extends Component {
             <select name='category'>
               {this.props.categories.map(({ name }) => <option key={name} value={name}>{name}</option>)}
             </select>
-
           </Form.Field>
 
           <Form.Field>

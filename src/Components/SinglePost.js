@@ -71,17 +71,17 @@ class SinglePost extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  if (state.posts.isPostsFetched) {
-    // TODO: isPostsFetched is not enough, check also if this post exist or redirect to 404
+  if (state.posts.postsAreFetched) {
+    // TODO: postsAreFetched is not enough, check also if this post exist or redirect to 404
     return {
       post: state.posts.posts.find(post => post.id === ownProps.match.params.id),
       comments: state.comments.comments
-    }
+    };
   } else {
     return {
       post: {},
       comments: []
-    }
+    };
   }
 }
 

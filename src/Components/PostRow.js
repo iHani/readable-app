@@ -48,11 +48,11 @@ class PostRow extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const postArr = state.posts.posts.filter(({ id }) => id === ownProps.id)
-  const post = Object.assign({}, ...postArr)
+  const postArr = state.posts.posts.filter(({ id }) => id === ownProps.id);
+  const post = Object.assign({}, ...postArr);
   return {
     post
-   }
+  };
 }
 
 const mapDispatchToProps = (dispatch) => ({

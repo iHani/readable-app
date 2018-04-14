@@ -6,7 +6,7 @@ export const POSTS_FETCHED = 'POST_FETCHED';
 export const POST_DELETED = 'POST_DELETED';
 export const POST_UPDATED = 'POST_UPDATED';
 
-export const fetchPosts = () => dispatch => (
+export const fetchPosts = () => (dispatch) => (
   BlogAPI
   .getAllPosts()
   .then(posts => {
@@ -22,7 +22,7 @@ export const receivedPosts = (posts) => ({
 
 export const postsFetched = () => ({
   type: POSTS_FETCHED,
-  isPostsFetched: true
+  postsAreFetched: true
 });
 
 export const postPost = (post) => (dispatch) => (

@@ -8,9 +8,7 @@ const history = createHistory({ forceRefresh: true });
 
 class Header extends Component {
 
-  handleChangeCategory = (e, { value }) => {
-    history.push(`/${value}`);
-  };
+  handleChangeCategory = (e, { value }) => history.push(`/${value}`);
 
   render () {
     return (
@@ -50,8 +48,8 @@ const mapStateToProps = (state, ownProps) => {
     text: name,
     value: name,
   }))
-  : []
-  return { categories }
+  : [];
+  return { categories };
 }
 
 export default connect(mapStateToProps)(Header);

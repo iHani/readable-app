@@ -6,13 +6,13 @@ import { deleteComment } from '../actions/comments';
 
 class CommentsList extends Component {
 
-  HandleDeleteComment = (id) => this.props.deleteComment(id)
+  HandleDeleteComment = (id) => this.props.deleteComment(id);
 
   render () {
     return (
       <List divided relaxed>
         {this.props.comments && this.props.comments.map(comment => {
-            const { id, voteScore, author, body, timestamp  } = comment
+            const { id, voteScore, author, body, timestamp  } = comment;
             return (
               <List.Item key={id}>
 
@@ -47,7 +47,7 @@ class CommentsList extends Component {
   const mapStateToProps = (state) => {
     return {
       comments: state.comments.comments
-    }
+    };
   }
 
 

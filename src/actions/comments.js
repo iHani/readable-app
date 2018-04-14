@@ -31,7 +31,7 @@ export const submitComment = (comment) => ({
   comment
 });
 
-export const voteComment = (id, option) => dispatch => (
+export const voteComment = (id, option) => (dispatch) => (
   BlogAPI
   .voteComment(id, option)
   .then(res => dispatch(updateCommentScore(res)))

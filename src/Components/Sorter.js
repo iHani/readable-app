@@ -10,7 +10,7 @@ class Sorter extends Component {
     { value: 'oldest', text: 'oldest' },
     { value: 'highestVote', text: 'highest voting' },
     { value: 'lowestVote', text: 'lowest voting' }
-  ]
+  ];
 
   sorterText = (option) => this.sortOptions.filter(({ value }) => value === option)[0].text;
 
@@ -32,25 +32,24 @@ class Sorter extends Component {
         text={`Sort by ${this.sorterText(this.props.selectedSortBy)}`}
         options={this.sortOptions}
         onChange={this.handleChangeSorter}
-        defaultValue={this.props.selectedSortBy}
-        >
-        </Dropdown>
-      )
-    }
+        defaultValue={this.props.selectedSortBy} >
+      </Dropdown>
+    )
   }
+}
 
-  const mapStateToProps = (state) => ({
-    selectedSortBy: state.sorting.selectedSortBy
-  });
+const mapStateToProps = (state) => ({
+  selectedSortBy: state.sorting.selectedSortBy
+});
 
-  const mapDispatchToProps = dispatch => {
-    const { newest, oldest, highestVote, lowestVote } = sortBy
-    return {
-      newest: () => dispatch(newest()),
-      oldest: () => dispatch(oldest()),
-      highestVote: () => dispatch(highestVote()),
-      lowestVote: () => dispatch(lowestVote()),
-    }
+const mapDispatchToProps = (dispatch) => {
+  const { newest, oldest, highestVote, lowestVote } = sortBy;
+  return {
+    newest: () => dispatch(newest()),
+    oldest: () => dispatch(oldest()),
+    highestVote: () => dispatch(highestVote()),
+    lowestVote: () => dispatch(lowestVote()),
   }
+}
 
-  export default connect(mapStateToProps, mapDispatchToProps)(Sorter);
+export default connect(mapStateToProps, mapDispatchToProps)(Sorter);

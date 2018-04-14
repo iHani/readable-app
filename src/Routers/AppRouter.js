@@ -34,7 +34,6 @@ class AppRouter extends Component {
                 exact
                 path='/posts/:id'
                 component={SinglePost}
-
               />
               <Route
                 exact
@@ -58,7 +57,7 @@ class AppRouter extends Component {
 const mapStateToProps = (state, ownProps) => {
   return {
     posts: state.posts.posts
-  }
+  };
 }
 
 const mapDispatchToProps = (dispatch) => ({

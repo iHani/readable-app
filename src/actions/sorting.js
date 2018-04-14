@@ -28,6 +28,6 @@ export const sortBy = (posts, option) => {
       case 'lowestVote': return a.voteScore < b.voteScore ? -1 : 1;
       default:
     }
-    return {}
+    return {};
   })
 }

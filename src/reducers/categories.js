@@ -4,16 +4,16 @@ import {
 
 const initialCategoryState = {
   categories: []
-}
+};
 
 export default (state = initialCategoryState, action) => {
-  const { categories } = action
+  const { categories } = action;
   switch (action.type) {
     case RECEIVED_CATEGORIES :
     return {
       ...state,
       categories
-    }
+    };
 
     default :
     return state;

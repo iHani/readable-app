@@ -8,10 +8,11 @@ import { sortBy } from '../actions/sorting';
 class CategoryPage extends Component {
 
   render () {
-    const { currentCategory, posts } = this.props
+    console.log(this.props);
+    const { currentCategory, posts } = this.props;
     return (
       <Container text>
-        <Header as='h1'>{currentCategory}</Header>
+        <Header as='h1'>{currentCategory} ({posts.length})</Header>
 
         <Grid>
           <Grid.Row>
@@ -51,8 +52,9 @@ const mapStateToProps = (state, ownProps) => {
   const option = state.sorting.selectedSortBy;
 
   return {
+    currentCategory,
     posts: sortBy(posts, option)
-  }
+  };
 }
 
 export default connect(mapStateToProps)(CategoryPage);
