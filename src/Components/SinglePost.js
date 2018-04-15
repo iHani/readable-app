@@ -6,13 +6,20 @@ import { Container, Divider, Grid, Header, Icon, Label } from 'semantic-ui-react
 import { AddComment, CommentsList, Voter, ModalEditPost, NotFoundPage } from './index';
 import { fetchComments } from '../actions/comments';
 import { deletePost } from '../actions/posts';
+import createHistory from 'history/createBrowserHistory';
+
+const history = createHistory({ forceRefresh: true });
+
 
 class SinglePost extends Component {
 
   componentDidMount = () => this.props.fetchComments(this.props.match.params.id);
 
-  HandleDeletePost = (id) => this.props.deletePost(id);
-
+  HandleDeletePost = (id) => {
+    this.props.deletePost(id);
+    history.push(`/`);
+  }
+  
   render() {
     if (!this.props.post) {
       return <NotFoundPage />

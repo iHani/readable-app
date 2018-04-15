@@ -20,6 +20,7 @@ class PostForm extends Component {
       author,
       category,
     }
+
     this.props.postPost(post);
     this.props.fetchPosts();
     history.push(`/posts/${post.id}`);
@@ -32,23 +33,23 @@ class PostForm extends Component {
 
         <Form onSubmit={this.postFormSubmit.bind(this)}>
 
-          <Form.Field>
+          <Form.Field required>
             <label>Category</label>
-            <select name='category'>
+            <select name='category' required>
               {this.props.categories.map(({ name }) => <option key={name} value={name}>{name}</option>)}
             </select>
           </Form.Field>
 
-          <Form.Field>
+          <Form.Field required>
             <label>Title</label>
-            <input placeholder='Title' name='title' />
+            <input placeholder='Title' name='title' required/>
           </Form.Field>
 
-          <Form.TextArea rows={8} label='Body' name='body' />
+          <Form.TextArea rows={8} label='Body' name='body' required/>
 
-          <Form.Field>
+          <Form.Field required>
             <label>Author</label>
-            <input placeholder='Your name' name='author' />
+            <input placeholder='Your name' name='author' required/>
           </Form.Field>
 
           <Form.Field>

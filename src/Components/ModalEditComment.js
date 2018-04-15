@@ -39,6 +39,7 @@ class ModalEditComment extends Component {
                 label='Body'
                 value={this.state.body}
                 onChange={this.handleInputChange}
+                required
               />
             </Form.Field>
             <Container textAlign='center'>

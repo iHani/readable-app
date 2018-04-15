@@ -43,6 +43,7 @@ class ModalEditPost extends Component {
                 label='Title'
                 value={this.state.title}
                 onChange={this.handleInputChange}
+                required
               />
             </Form.Field>
             <Form.Field>
@@ -51,6 +52,7 @@ class ModalEditPost extends Component {
                 label='Body'
                 value={this.state.body}
                 onChange={this.handleInputChange}
+                required
               />
             </Form.Field>
             <Container textAlign='center'>

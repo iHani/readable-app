@@ -33,8 +33,8 @@ class AddComment extends Component {
   render () {
     return (
       <Form parentid={this.props.parentId} onSubmit={this.submitNewComment.bind(this)}>
-        <Form.TextArea name='body' label='Comment' placeholder='Your comment...'  value={this.state.body} onChange={this.handleInputChange} />
-        <Form.Input name='author' fluid label='Name' placeholder='Your name' value={this.state.author} onChange={this.handleInputChange} />
+        <Form.TextArea name='body' label='Comment' placeholder='Your comment...'  value={this.state.body} onChange={this.handleInputChange} required/>
+        <Form.Input name='author' fluid label='Name' placeholder='Your name' value={this.state.author} onChange={this.handleInputChange} required/>
         <Form.Field>
           <Container textAlign='center'>
             <Form.Button content='Submit' />
