@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import moment from 'moment';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Container, Divider, Grid, Header, Icon, Label } from 'semantic-ui-react';
@@ -7,6 +6,7 @@ import { AddComment, CommentsList, Voter, ModalEditPost, NotFoundPage } from './
 import { fetchComments } from '../actions/comments';
 import { deletePost } from '../actions/posts';
 import createHistory from 'history/createBrowserHistory';
+import timeToString from '../Utils/timeToString';
 
 const history = createHistory({ forceRefresh: true });
 
@@ -19,7 +19,7 @@ class SinglePost extends Component {
     this.props.deletePost(id);
     history.push(`/`);
   }
-  
+
   render() {
     if (!this.props.post) {
       return <NotFoundPage />
@@ -42,7 +42,7 @@ class SinglePost extends Component {
                   <Label color='green'>{category}</Label>
                 </Link>
                 <Header.Subheader>
-                  By <strong>{author}</strong> on {moment(timestamp).calendar()}
+                  By <strong>{author}</strong> on {timeToString(timestamp)}
                 </Header.Subheader>
               </Header>
 

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import moment from 'moment';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Icon, Label, List } from 'semantic-ui-react';
 import { Voter, ModalEditPost } from './index';
 import { fetchPosts, deletePost } from '../actions/posts';
+import timeToString from '../Utils/timeToString';
 
 class PostRow extends Component {
 
@@ -39,7 +39,7 @@ class PostRow extends Component {
 
         <List.Content floated='left'>
           <Link to={`/posts/${id}`}><h3>{title}</h3></Link>
-          <List.Description>By <strong>{author}</strong> {moment(timestamp).calendar()}</List.Description>
+          <List.Description>By <strong>{author}</strong> {timeToString(timestamp)}</List.Description>
         </List.Content>
 
       </List.Item>
