@@ -6,7 +6,6 @@ import { AddComment, CommentsList, Voter, ModalEditPost, NotFoundPage } from './
 import { fetchComments } from '../actions/comments';
 import { deletePost } from '../actions/posts';
 import createHistory from 'history/createBrowserHistory';
-import timeToString from '../Utils/timeToString';
 
 const history = createHistory({ forceRefresh: true });
 
@@ -42,7 +41,7 @@ class SinglePost extends Component {
                   <Label color='green'>{category}</Label>
                 </Link>
                 <Header.Subheader>
-                  By <strong>{author}</strong> on {timeToString(timestamp)}
+                  By <strong>{author}</strong> on {new Date(timestamp).toLocaleDateString()}
                 </Header.Subheader>
               </Header>
 
