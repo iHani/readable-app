@@ -1,6 +1,6 @@
 # Readable App
 
-As simple blogging application that lets user create a post with some category, comment on posts, and edit and delete posts and comments. This project is part of learning React with Udacity React course.
+As simple blogging application that lets user create a post with some category, comment on posts, and edit and delete posts and comments, managing the state by [Redux](https://redux.js.org). This project is part of learning Redux with Udacity's React course.
 
 ## Getting Started:
 Clone and run the backend development server from here https://github.com/udacity/reactnd-project-readable-starter
