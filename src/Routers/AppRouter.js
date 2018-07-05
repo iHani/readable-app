@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Container } from 'semantic-ui-react';
-import { Header, Footer, PostsList, PostForm, SinglePost, CategoryPage, NotFoundPage } from '../Components';
+import { Navbar, Footer, PostsList, PostForm, SinglePost, CategoryPage, NotFoundPage } from '../Components';
 import { connect } from 'react-redux';
 import { fetchPosts } from '../actions/posts';
 import { fetchCategories } from '../actions/categories';
@@ -17,7 +17,7 @@ class AppRouter extends Component {
     return (
       <BrowserRouter>
         <div className="flex-container">
-          <Header />
+          <Navbar />
           <Container text style={{ marginTop: '7em' }}>
             <Switch>
               <Route

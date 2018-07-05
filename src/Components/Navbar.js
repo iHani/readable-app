@@ -6,7 +6,7 @@ import createHistory from 'history/createBrowserHistory';
 
 const history = createHistory({ forceRefresh: true });
 
-class Header extends Component {
+class Navbar extends Component {
 
   handleChangeCategory = (e, { value }) => history.push(`/${value}`);
 
@@ -52,4 +52,4 @@ const mapStateToProps = (state, ownProps) => {
   return { categories };
 }
 
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps)(Navbar);

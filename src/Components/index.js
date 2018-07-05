@@ -1,4 +1,4 @@
-import Header from './Header';
+import Navbar from './Navbar';
 import Footer from './Footer';
 import PostsList from './PostsList';
 import PostRow from './PostRow';
@@ -14,7 +14,7 @@ import ModalEditComment from './ModalEditComment';
 import NotFoundPage from './NotFoundPage';
 
 export {
-  Header,
+  Navbar,
   Footer,
   PostsList,
   PostRow,
