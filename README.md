@@ -9,7 +9,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 
 ## Getting Started:
-Clone and run the backend development server from here https://github.com/udacity/reactnd-project-readable-starter
+
+Live demo https://ihani-readable.herokuapp.com
+
+To run the app locally, you need to clone and run the backend development server from here https://github.com/udacity/reactnd-project-readable-starter
 
 Then clone the frontend (this repo) https://github.com/iHani/readable-app
 
