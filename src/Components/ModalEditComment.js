@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { Form, Container, Icon, Modal } from 'semantic-ui-react'
 import serializeForm from 'form-serialize';
-import { editComment } from '../Actions/comments';
+import { editComment } from '../actions/comments';
 
 class ModalEditComment extends Component {
 

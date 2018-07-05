@@ -6,7 +6,7 @@ import {
   POST_DELETED,
   POST_UPDATED,
   DECREASE_COMMENT_COUNT
-} from '../Actions/posts';
+} from '../actions/posts';
 
 const initialPostState = {
   posts: [],

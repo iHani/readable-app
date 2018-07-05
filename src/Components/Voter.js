@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { List } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-import { votePost } from '../Actions/posts';
-import { voteComment } from '../Actions/comments';
+import { votePost } from '../actions/posts';
+import { voteComment } from '../actions/comments';
 
 class Voter extends Component {
 

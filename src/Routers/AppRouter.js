@@ -3,8 +3,8 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Container } from 'semantic-ui-react';
 import { Header, Footer, PostsList, PostForm, SinglePost, CategoryPage, NotFoundPage } from '../Components';
 import { connect } from 'react-redux';
-import { fetchPosts } from '../Actions/posts';
-import { fetchCategories } from '../Actions/categories';
+import { fetchPosts } from '../actions/posts';
+import { fetchCategories } from '../actions/categories';
 
 class AppRouter extends Component {
 

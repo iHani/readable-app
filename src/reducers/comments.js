@@ -4,7 +4,7 @@ import {
   VOTE_COMMENT,
   DELETE_COMMENT,
   COMMENT_UPDATED
-} from '../Actions/comments';
+} from '../actions/comments';
 
 export default (state = [], action) => {
 
