@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux'
 import AppRouter from './Routers/AppRouter';
-import configureStore from './store/configureStore';
+import configureStore from './Store/configureStore';
 import './index.css';
 
 const store = configureStore();

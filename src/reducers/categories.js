@@ -1,6 +1,6 @@
 import {
   RECEIVED_CATEGORIES,
-} from '../actions/categories';
+} from '../Actions/categories';
 
 const initialCategoryState = {
   categories: []

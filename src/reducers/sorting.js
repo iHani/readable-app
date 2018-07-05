@@ -3,7 +3,7 @@ import {
   SORT_BY_OLDEST,
   SORT_BY_HIGHEST_VOTES,
   SORT_BY_LOWEST_VOTES,
-} from '../actions/sorting';
+} from '../Actions/sorting';
 
 const initialPostState = {
   selectedSortBy: 'newest'

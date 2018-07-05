@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { List } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-import { votePost } from '../actions/posts';
-import { voteComment } from '../actions/comments';
+import { votePost } from '../Actions/posts';
+import { voteComment } from '../Actions/comments';
 
 class Voter extends Component {
 
@@ -30,7 +30,7 @@ class Voter extends Component {
 
 const mapDispatchToProps = (dispatch) => ({
   dispatchVotePost: (id, option) => dispatch(votePost(id, option)),
-  dispatchVoteComment: (id, option) => dispatch(voteComment(id, option))
+  dispatchVoteComment: (id, option) => dispatch(voteComment(id, option)),
 });
 
 export default connect(undefined, mapDispatchToProps)(Voter);

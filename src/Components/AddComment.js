@@ -3,8 +3,8 @@ import serializeForm from 'form-serialize';
 import { connect } from 'react-redux';
 import uuid from 'uuid';
 import { Container, Form } from 'semantic-ui-react';
-import { postComment } from '../actions/comments';
-import { fetchPosts } from '../actions/posts';
+import { postComment } from '../Actions/comments';
+import { fetchPosts } from '../Actions/posts';
 
 class AddComment extends Component {
 

@@ -6,7 +6,7 @@ import {
   POST_DELETED,
   POST_UPDATED,
   DECREASE_COMMENT_COUNT
-} from '../actions/posts';
+} from '../Actions/posts';
 
 const initialPostState = {
   posts: [],
@@ -39,7 +39,7 @@ export default (state = initialPostState, action) => {
     return {
       ...state,
       posts: state.posts.map(post => post.id === action.id ?
-        Object.assign(post, { voteScore: action.voteScore })
+        { ...post, voteScore: action.voteScore }
         : post)
       };
 
@@ -59,10 +59,11 @@ export default (state = initialPostState, action) => {
       return {
         ...state,
         posts: state.posts.map(post => post.id === action.id ?
-          Object.assign(post, { commentCount: post.commentCount - 1 })
-          : post)      };
+          { ...post, commentCount: post.commentCount - 1 }
+          : post)
+        };
 
-      default :
-      return state;
+        default :
+        return state;
+      }
     }
-  }

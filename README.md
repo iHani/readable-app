@@ -1,6 +1,12 @@
 # Readable App
 
-As simple blogging application that lets user create a post with some category, comment on posts, and edit and delete posts and comments, managing the state by [Redux](https://redux.js.org). This project is part of learning Redux with Udacity's React course.
+A simple blogging application that lets user create posts with a categories, comment on posts with voting system.
+
+
+## About
+
+This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app), and implemented [Redux](https://redux.js.org) to manage the state, and styled using [React Semantoc-UI](react.semantic-ui.com) framework. You can find more information on how to perform common tasks [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
+
 
 ## Getting Started:
 Clone and run the backend development server from here https://github.com/udacity/reactnd-project-readable-starter
@@ -43,11 +49,6 @@ The app should open up http://localhost:3000 for you.
     ├── index.css # Global styles. You probably won't need to change anything here.
     └── index.js # You should not need to modify this file. It is used for DOM rendering only.
 ```
-
-
-## Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app) and styled using [React Semantoc-UI](react.semantic-ui.com) framework. You can find more information on how to perform common tasks [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
 
 ## Contributing
 

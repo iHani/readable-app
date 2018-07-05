@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Container, Divider, Grid, Header, Icon, Label } from 'semantic-ui-react';
 import { AddComment, CommentsList, Voter, ModalEditPost, NotFoundPage } from './index';
-import { fetchComments } from '../actions/comments';
-import { deletePost } from '../actions/posts';
+import { fetchComments } from '../Actions/comments';
+import { deletePost } from '../Actions/posts';
 import createHistory from 'history/createBrowserHistory';
 
 const history = createHistory({ forceRefresh: true });

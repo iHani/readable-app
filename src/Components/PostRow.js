@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Icon, Label, List } from 'semantic-ui-react';
 import { Voter, ModalEditPost } from './index';
-import { fetchPosts, deletePost } from '../actions/posts';
+import { fetchPosts, deletePost } from '../Actions/posts';
 
 class PostRow extends Component {
 

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Button, Container, Divider, Icon, List, Grid } from 'semantic-ui-react';
 import { PostRow, Sorter } from './index';
-import { sortBy } from '../actions/sorting';
+import { sortBy } from '../Actions/sorting';
 
 class PostsList extends Component {
 

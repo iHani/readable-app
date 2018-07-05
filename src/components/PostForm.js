@@ -3,7 +3,7 @@ import uuid from 'uuid';
 import serializeForm from 'form-serialize';
 import { connect } from 'react-redux';
 import { Container, Form, Header } from 'semantic-ui-react';
-import { postPost, fetchPosts } from '../actions/posts';
+import { postPost, fetchPosts } from '../Actions/posts';
 import createHistory from 'history/createBrowserHistory';
 
 const history = createHistory({ forceRefresh: true });

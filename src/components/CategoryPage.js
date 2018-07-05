@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Button, Container, Divider, Grid, Header, Icon, List } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { PostRow, Sorter } from './index';
-import { sortBy } from '../actions/sorting';
+import { sortBy } from '../Actions/sorting';
 
 class CategoryPage extends Component {
 

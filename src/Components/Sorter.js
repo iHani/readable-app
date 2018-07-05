@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Dropdown } from 'semantic-ui-react';
-import * as sortBy from '../actions/sorting';
+import * as sortBy from '../Actions/sorting';
 
 class Sorter extends Component {
 

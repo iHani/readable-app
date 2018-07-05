@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Icon, List } from 'semantic-ui-react';
 import { Voter, ModalEditComment } from './index';
-import { deleteComment } from '../actions/comments';
-import { fetchPosts } from '../actions/posts';
+import { deleteComment } from '../Actions/comments';
+import { fetchPosts } from '../Actions/posts';
 
 class CommentsList extends Component {
 
