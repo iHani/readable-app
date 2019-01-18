@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Container } from 'semantic-ui-react';
-import { Navbar, Footer, PostsList, PostForm, SinglePost, CategoryPage, NotFoundPage } from '../Components';
+import { Navbar, Footer, PostsList, PostForm, SinglePost, CategoryPage, NotFoundPage } from '../components';
 import { connect } from 'react-redux';
 import { fetchPosts } from '../actions/posts';
 import { fetchCategories } from '../actions/categories';
