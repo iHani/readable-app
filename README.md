@@ -29,6 +29,21 @@ yarn start
 
 The app should open up http://localhost:3000 for you.
 
+## Screenshots
+
+<p align="center">
+<img width="500" src="assets/screenshot-create-post-form.png">
+</p>
+
+<p align="center">
+<img width="500" src="assets/screenshot-main-page.png">
+</p>
+
+<p align="center">
+<img width="500" src="assets/screenshot-post-page.png">
+</p>
+
+
 ## What You're Getting
 
 ```sh
